@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "My personal portfolio, written in go",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "watch-css": "npx tailwindcss -i web/static/css/input.css -o web/static/css/output.css --watch",
+    "build-css-prod": "npx tailwindcss -i web/static/css/input.css -o web/static/css/output.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaacgr/portfolio.git"
+  },
+  "author": "Isaac Rowell",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/isaacgr/portfolio/issues"
+  },
+  "homepage": "https://github.com/isaacgr/portfolio#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}
