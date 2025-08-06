@@ -1,0 +1,9 @@
+{{define "blog"}}
+<section id="blog" class="container">
+    <ul>
+        {{range .Articles}}
+        <li>{{template "articleListing" .}}</li>
+        {{end}}
+    </ul>
+</section>
+{{end}}

@@ -4,18 +4,61 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-            name="description"
-            content="My portfolio website, written with go+htmx"
-        />
-        <link rel="stylesheet" href="/static/css/output.css" />
+        <meta name="description" content="{{.Description}}" />
         <title>{{.Title}}</title>
-        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
-        <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+        <link rel="stylesheet" href="/static/css/styles.css?v=1770723066000" />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/static/assets/favicon/favicon-96x96.png"
+            sizes="96x96"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/static/assets/favicon/favicon.svg"
+        />
+        <link rel="shortcut icon" href="/static/assets/favicon/favicon.ico" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/static/assets/favicon/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="IsaacRowell" />
+        <meta name="twitter:title" content="{{.Title}}" />
+        <meta name="twitter:description" content="{{.Description}}" />
+        <meta
+            name="twitter:url"
+            content="https://irowell.io/favicon.png"
+        />
+        <meta name="twitter:card" content="summary" />
+        <link rel="manifest" href="/static/assets/favicon/site.webmanifest" />
+        <script src="/static/htmx/htmx.js"></script>
+        <script src="/static/htmx/response-targets.js"></script>
     </head>
-    <body id="body" class="container mx-auto px-4 py-8">
-        {{block "navbar" .}}{{end}}
+    <body>
+        <header class="primary-header container group">
+            <h1 class="logo">
+                <a href="/"
+                    >Isaac<br />
+                    Rowell</a
+                >
+            </h1>
+            <aside class="group">{{block "navbar" .}}{{end}}</aside>
+        </header>
+        <main hx-ext="response-targets" id="main">{{.Body}}</main>
+        <footer class="primary-footer container">
+            <small>
+                &copy; <span id="copy-year"></span> Isaac Rowell. All rights
+                reserved.
+            </small>
+        </footer>
     </body>
-    <main hx-ext="response-targets" id="main"></main>
+    <script src="/static/js/main.js"></script>
+    <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=explicit&onload=initCaptcha"
+        async
+        defer
+    ></script>
 </html>
 {{end}}

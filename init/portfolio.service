@@ -1,0 +1,15 @@
+[Unit]
+Description=Personal portfolio website - written in go
+After=network.target
+
+[Service]
+RestartSec=2s
+Type=simple
+User=portfolio
+Group=portfolio
+ExecStart=/usr/local/bin/portfolio
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

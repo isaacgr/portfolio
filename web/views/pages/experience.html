@@ -1,0 +1,183 @@
+{{define "experience"}}
+<section id="about" class="hero row">
+    <div class="">
+        <article>
+            <p>
+                Experience designing, architecting, and supporting
+                mission‑critical 24/7 broadcast production software systems
+                across cloud and on‑prem deployments. Focused on strong
+                collaboration with Software Engineering teams on system
+                performance, capacity management, and scalability. A proven
+                understanding of system architectures and high‑end networking.
+            </p>
+        </article>
+    </div>
+    <article>
+        <h3>Some of the customers I've provided solutions for</h3>
+        {{block "work" .}}{{end}}
+    </article>
+</section>
+<section id="broadcast" class="portfolio-section">
+    <div class="">
+        <section class="container grid">
+            <section class="col-1-3 experience-group">
+                <div>
+                    {{block "workflow-img" .}}{{end}}
+                    <h3>Workflow Knowledge</h3>
+                </div>
+                <p>
+                    Deep understanding of live production, master control,
+                    post‑production, remote/IP production, and esports
+                    broadcasting. Architected control solutions that support
+                    multi‑role operations in complex environments.
+                </p>
+            </section>
+            <section class="col-1-3 experience-group">
+		<div>
+                    {{block "standards-img" .}}{{end}}
+                    <h3>Standards & Networking</h3>
+		</div>
+                <p>
+                    SMPTE 2110, SDI, NMOS, and compressed IP
+                    formats. Experience with routers (IP & SDI), multiviewers,
+                    intercom, tally, RF‑over‑IP, processing gear, and industry
+                    control panels. Partnered with IT on VLANs, multicast
+                    routing, and firewalls in high‑security installs.
+                </p>
+            </section>
+            <section class="col-1-3 experience-group">
+	        <div>
+		    {{block "global-search-img" .}}{{end}}
+		    <h3>Global Operational Insight</h3>
+	        </div>
+                <p>
+                    Experience engaging with broadcasters across North America,
+                    South America, Europe, Asia, and Africa. Comfortable
+                    addressing market‑specific differences in design, user
+                    expectations, and deployment constraints.
+                </p>
+            </section>
+        </section>
+    </div>
+</section>
+<section id="experience" class="portfolio-section">
+    <div class="container">
+        <h2>Work Experience</h2>
+        <section class="container">
+            <article>
+                <h3 class="">
+                    Senior Product Specialist, Control Systems – Evertz
+                    Microsystems Ltd.
+                </h3>
+                <p>April 2020 – Present</p>
+                <ul>
+                    <li>
+                        Led UI and backend teams to design and deliver the
+                        MAGNUM product on a regular release cadence.
+                    </li>
+                    <li>
+                        Managed a product specialist team for validation and
+                        support; drove QA, regression, and documentation.
+                    </li>
+                    <li>
+                        Implemented Agile tracking (Jira), balancing monthly
+                        iterations for small features with multi‑month large
+                        releases.
+                    </li>
+                    <li>
+                        Coordinated cross‑product integrations with Product
+                        Managers and collaborated on requirements and workflows.
+                    </li>
+                    <li>
+                        Closed feedback loops with deployment teams to capture
+                        customer input and improve outcomes.
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h3>
+                    Product Specialist, Control Systems – Evertz Microsystems
+                    Ltd.
+                </h3>
+                <p>June 2016 – April 2020</p>
+                <ul>
+                    <li>
+                        Validated control system software functionality and
+                        ensured alignment with requirements.
+                    </li>
+                    <li>
+                        Educated and collaborated with customers, system
+                        integrators, and internal stakeholders on new and
+                        existing features.
+                    </li>
+                    <li>
+                        Reviewed system designs to identify potential failures
+                        and question design decisions; applied effective
+                        troubleshooting to resolve issues.
+                    </li>
+                </ul>
+            </article>
+        </section>
+    </div>
+</section>
+<section id="skills" class="portfolio-section">
+    <div class="container">
+        <h2>Skills</h2>
+        <section class="grid">
+            <section class="col-1-2">
+                <h3>Focus Areas</h3>
+                <ul>
+                    <li>Systems performance & capacity management</li>
+                    <li>QA, regression, and release management</li>
+                    <li>Cloud & on‑prem orchestration</li>
+                    <li>Developer productivity tooling</li>
+                    <li>Automation & Integration Testing</li>
+                    <li>Networking Design</li>
+                </ul>
+            </section>
+            <section class="col-1-2">
+                <h3>Software & Systems</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>Golang</li>
+                    <li>JavaScript</li>
+                    <li>Linux (Ubuntu, CentOS)</li>
+                    <li>Scalable Architectures</li>
+                    <li>Cloud Services (AWS, Azure, Oracle)</li>
+                    <li>Atlassian Cloud (Bitbucket, Jira)</li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</section>
+<section id="education" class="portfolio-section">
+    <div class="container">
+        <h2>Educational Background</h2>
+        <section class="grid">
+            <section class="col-1-2">
+                <h3>Lakehead University</h3>
+                <p>2014 – 2016</p>
+                <strong>B.Eng. (Electrical)</strong>
+            </section>
+            <section class="col-1-2">
+                <h3>Mohawk College</h3>
+                <p>2010 – 2014</p>
+                <strong>Electrical Engineering Technology - Control</strong>
+            </section>
+        </section>
+    </div>
+</section>
+<!--
+<section id="personal" class="portfolio-section container">
+    <h2>Activities & Interests</h2>
+    <p>Home‑lab tinkerer and side‑project enthusiast.</p>
+    <p>
+        I probably enjoy far too many hobbies. Dabbling in 3D printing and
+        modelling. Always tinkering with some small electronics, and recently
+        trying to setup a more comprehensive smart home setup with ESPs,
+        Arduinos and the like. Have been getting into woodworking ever since I
+        got a garage.
+    </p>
+</section>
+-->
+{{end}}
