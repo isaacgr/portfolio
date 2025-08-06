@@ -1,16 +1,16 @@
-package internal
+package articles
 
-import "errors"
+import (
+	"errors"
+)
 
 type Article struct {
-	Title   string
-	Summary string
-	Date    string
-	Content []byte
+	Title       string
+	Description string
+	Date        string
+	Content     []byte
 }
 
-func FindArticles() ([]Article, error) {
-	return nil, errors.New("Error")
+func ConvertArticles(articles []Article) ([][]byte, error) {
+	return nil, errors.New("Unable to convert articles")
 }
-
-func ConvertPosts() {}

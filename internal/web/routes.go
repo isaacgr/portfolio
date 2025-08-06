@@ -25,7 +25,6 @@ func (s *WebServer) RegisterRoutes() {
 	}
 	s.Server.Renderer = r
 	s.Server.GET("/", Index)
-	s.Server.GET("/blog", Blog)
 	s.Server.Static("/static", "web/static")
 }
 
@@ -35,21 +34,4 @@ func Index(c echo.Context) error {
 		"Sitename": "Integrated Concepts",
 	}
 	return c.Render(http.StatusOK, "base", data)
-}
-
-func Blog(c echo.Context) error {
-	articles, err := internal.FindArticles()
-	if err != nil {
-		e := Error{
-			Status:        500,
-			StatusMessage: "Internal Server Error",
-			Body:          "Unable to fetch articles",
-		}
-		return c.Render(
-			http.StatusInternalServerError,
-			"error",
-			e,
-		)
-	}
-	return c.Render(http.StatusOK, "articles", articles)
 }
