@@ -1,9 +1,8 @@
 {{define "error"}}
 <div class="text-center px-6 py-12">
-    <h2 class="text-6xl font-extrabold text-red-600">{{.Status}}</h1>
+    <h2 class="text-2xl font-extrabold text-red-600">{{.ErrorMessage}}</h1>
     <h2 class="text-2xl md:text-3xl font-semibold mt-4 mb-2">
-        {{.StatusMessage}}
+        {{.ErrorMessage}}
     </h2>
-    <p class="text-gray-600 mb-6">{{.Body}}</p>
 </div>
 {{end}}
