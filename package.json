@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "npm run watch-css & air",
+    "dev": "npm run build-css-prod && node update-template.js && air",
     "watch-css": "npx tailwindcss -i web/static/css/input.css -o web/static/css/output.css --watch",
     "build-css-prod": "npx tailwindcss -i web/static/css/input.css -o web/static/css/output.css --minify"
   },

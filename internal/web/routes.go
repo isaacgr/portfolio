@@ -23,7 +23,7 @@ func (s *WebServer) RegisterRoutes() {
 	}
 	s.Server.Renderer = r
 	s.Server.GET("/", Index)
-	s.Server.GET("/contact", Contact)
+	s.Server.GET("/contact", ContactPage)
 	s.Server.POST("/contact", ContactSubmit)
 	s.Server.Static("/static", "web/static")
 }
@@ -36,7 +36,7 @@ func Index(c echo.Context) error {
 	return c.Render(http.StatusOK, "base", data)
 }
 
-func Contact(c echo.Context) error {
+func ContactPage(c echo.Context) error {
 	return c.Render(http.StatusOK, "contact", nil)
 }
 

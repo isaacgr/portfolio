@@ -8,7 +8,7 @@ type Configuration struct {
 func NewConfiguration() (*Configuration, error) {
 	cfg := Configuration{
 		Host: "127.0.0.1",
-		Port: 2475,
+		Port: 3475,
 	}
 	return &cfg, nil
 }
