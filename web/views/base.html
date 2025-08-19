@@ -11,7 +11,7 @@
         <title>{{.Title}}</title>
         <link
             rel="stylesheet"
-            href="/static/css/output.css?v=1754909709990.4844"
+            href="/static/css/output.css?v=1755378984476.6194"
         />
         <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
         <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
@@ -21,7 +21,6 @@
         <main hx-ext="response-targets" id="main" class="p-6">
             {{template "home"}}
         </main>
-
         <footer class="border-t border-neutral-200 bg-white">
             <div
                 class="container mx-auto max-w-5xl px-4 py-8 text-center text-xs text-neutral-500"
@@ -31,7 +30,6 @@
         </footer>
     </body>
     <script>
-        // tiny enhancement: current year
         document.getElementById("y").textContent = new Date().getFullYear();
     </script>
 </html>

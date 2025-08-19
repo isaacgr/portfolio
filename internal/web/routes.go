@@ -23,6 +23,7 @@ func (s *WebServer) RegisterRoutes() {
 	}
 	s.Server.Renderer = r
 	s.Server.GET("/", Index)
+	s.Server.GET("/home", Home)
 	s.Server.GET("/contact", ContactPage)
 	s.Server.POST("/contact", ContactSubmit)
 	s.Server.Static("/static", "web/static")
@@ -33,7 +34,12 @@ func Index(c echo.Context) error {
 		"Title":    "Integrated Concepts",
 		"Sitename": "Integrated Concepts",
 	}
+	c.Response().Header().Set("HX-Redirect", "/home")
 	return c.Render(http.StatusOK, "base", data)
+}
+
+func Home(c echo.Context) error {
+	return c.Render(http.StatusOK, "home", nil)
 }
 
 func ContactPage(c echo.Context) error {
