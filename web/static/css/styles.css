@@ -1,0 +1,987 @@
+/*
+========================================
+Reset
+========================================
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol,
+ul {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+===============================
+Fonts
+===============================
+*/
+
+/* Lato Thin - 100 */
+@font-face {
+    font-family: "Lato";
+    src: url("../assets/fonts/Lato/Lato-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Lato Light - 300 */
+@font-face {
+    font-family: "Lato";
+    src: url("../assets/fonts/Lato/Lato-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Lato Regular - 400 */
+@font-face {
+    font-family: "Lato";
+    src: url("../assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*
+===============================
+Custom Syles
+===============================
+*/
+
+:root {
+    --color-code: #c2c2c2;
+}
+
+[data-theme="light"] {
+    --color-bg: #f7f9f7;
+    --color-primary: #e3ede5;
+    --color-primary-dark: #5e8266;
+    --color-secondary: #4a6d7c;
+    --text-primary: #172a38;
+    --text-secondary: #46677b;
+}
+
+[data-theme="dark"] {
+    --color-bg: #241f29;
+    --color-primary: #3d4e56;
+    --color-primary-dark: #8fb397;
+    --color-secondary: #8bb1c4;
+    --text-primary: #e3ede5;
+    --text-secondary: #a3b8c2;
+}
+
+body {
+    /*color image position repeat*/
+    background: var(--color-bg);
+    color: var(--text-secondary);
+    /*font-style font-variant font-wight font-size/line-height font-family*/
+    font:
+        300 16px/22px "Lato",
+        "Liberation Mono",
+        "monospace",
+        "Consolas",
+        "Open Sans",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+aside {
+    display: inline;
+}
+
+/*
+===============================
+Grid
+===============================
+*/
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+* With Go templates, the whitespace between elements using the .col classes
+* can't be removed with comments (easily from what I could attempt) so
+* setting the grid this way works around the problem instead
+* */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid,
+.container {
+    width: 960px;
+    margin: 30px auto;
+}
+
+.container {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.col-1-3 {
+    width: 33.33%;
+}
+
+.col-1-2 {
+    width: 50%;
+}
+
+.col-2-3 {
+    width: 66.66%;
+}
+
+.col-1-3,
+.col-1-2,
+.col-2-3 {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.grid,
+.col-1-3,
+.col-1-2,
+.col-2-3 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/*
+================================
+Clearfix
+================================
+*/
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    clear: both;
+    *zoom: 1;
+}
+
+/*
+================================
+Rows
+================================
+*/
+
+.row,
+.row-alt {
+    min-width: 960px;
+    padding: 66px 0 44px 0;
+}
+
+.row {
+    background: var(--color-primary);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/*
+================================
+Typography
+================================
+*/
+
+h1,
+h3,
+h4,
+h5,
+p {
+    margin-bottom: 22px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 44px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 44px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    color: var(--text-secondary);
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+strong {
+    font-weight: 400;
+}
+
+cite,
+em,
+i {
+    font-style: italic;
+}
+
+.tagline {
+    margin: 66px 0 22px 0;
+    text-align: right;
+}
+
+.long {
+    text-align: center;
+}
+
+p {
+    line-height: 28px;
+}
+
+/*
+================================
+Buttons
+================================
+*/
+
+.btn {
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0;
+    color: #fff;
+    background-color: var(--color-primary-dark);
+    cursor: pointer;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    padding: 12px 24px;
+    & > * {
+        color: #fff;
+    }
+}
+
+.btn:hover {
+    background-color: var(--color-secondary);
+    color: #fff;
+    & > * {
+        color: #fff;
+    }
+}
+
+.btn-alt {
+    border: 1px solid var(--color-primary-dark);
+}
+
+/*
+===============================
+Primary Header
+===============================
+*/
+
+.logo {
+    border-top: 4px solid var(--text-primary);
+    padding: 40px 0 22px 0;
+    float: left;
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 44px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.primary-header a,
+.primary-footer a {
+    color: var(--text-primary);
+}
+
+.primary-header a:hover,
+.primary-footer a:hover {
+    color: var(--color-secondary);
+}
+
+/*
+===============================
+Primary Footer
+===============================
+*/
+
+.primary-footer {
+    color: var(--text-primary);
+    font-size: 14px;
+    padding-bottom: 44px;
+    padding-top: 44px;
+}
+
+.primary-footer small {
+    float: left;
+    font-weight: 400;
+}
+
+/*
+===============================
+Navigation
+===============================
+*/
+
+.nav {
+    padding: 40px 0 22px 0;
+    float: right;
+}
+
+.primary-nav {
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: right;
+}
+
+.primary-nav li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/*
+===============================
+Pages
+===============================
+*/
+
+.hero {
+    padding: 22px 80px 66px 80px;
+    line-height: 44px;
+    text-align: center;
+    color: var(--text-secondary-dark);
+}
+
+.hero h2 {
+    font-size: 36px;
+}
+
+.hero p {
+    font-size: 24px;
+}
+
+.portfolio-section li {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.portfolio-section article:not(:first-child) {
+    margin-top: 28px;
+}
+
+.portfolio-section p {
+    font-size: 20px;
+}
+
+.portfolio-section div.container {
+    border-bottom: 1px solid var(--color-primary-dark);
+}
+
+#home p,
+#about p {
+    font-size: 24px;
+    line-height: 44px;
+    max-width: 960px;
+    margin: 0 auto 22px auto;
+}
+
+#skills ul {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.headshot {
+    border-radius: 50%;
+    filter: grayscale(1);
+    width: 192px;
+}
+
+/*
+===============================
+Links
+===============================
+*/
+
+a,
+a * {
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+a:hover,
+a:hover * {
+    color: var(--color-secondary);
+    border-bottom-color: var(--color-secondary);
+    border-bottom-width: 4px;
+}
+
+p a {
+    border-bottom: 1px solid var(--text-primary);
+    font-weight: 400;
+}
+
+/*
+========================================
+Contact
+========================================
+*/
+
+#submit-contact {
+    cursor: pointer;
+}
+
+#submit-contact:disabled {
+    background-color: var(--text-primary);
+    cursor: default;
+}
+
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator {
+    display: block;
+    margin: 1rem auto;
+    width: 2rem;
+}
+
+.htmx-request.htmx-indicator {
+    display: block;
+    margin: 0 auto;
+    width: 2rem;
+}
+
+.contact-img {
+    width: 66px;
+}
+
+#socials {
+    justify-content: space-evenly;
+}
+
+#socials a {
+    display: block;
+}
+
+/*
+========================================
+Experience
+========================================
+*/
+
+#work {
+    justify-content: space-evenly;
+}
+
+.work-img {
+    display: block;
+    height: 99px;
+    padding: 15px;
+}
+
+#broadcast .container.grid {
+    text-align: center;
+    line-height: 44px;
+}
+
+.experience-group {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+}
+
+#broadcast p {
+    text-align: left;
+}
+
+.experience-img {
+    fill: var(--color-secondary);
+    display: inline-block;
+    height: 88px;
+    padding: 15px;
+}
+
+/*
+========================================
+Form
+========================================
+*/
+
+.form-wrapper {
+    background-color: #fff;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 800px;
+    padding: 0;
+}
+
+.form-wrapper #socials {
+    vertical-align: top;
+    background-color: var(--color-primary);
+    margin: 0;
+    width: 20%;
+    border-radius: 0 0 22px 0;
+    display: inline-block;
+}
+
+.form-wrapper #socials a {
+    margin: 50px auto;
+}
+
+.form-wrapper-group {
+    display: flex;
+}
+
+.form-header {
+    border-radius: 22px 22px 0 0;
+    background-color: var(--color-secondary);
+    padding: 40px;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+fieldset {
+    padding-bottom: 40px;
+}
+
+form {
+    width: 80%;
+    display: inline-block;
+}
+
+input.btn {
+    margin: 0 auto;
+    display: block;
+}
+
+input,
+select,
+textarea,
+#g-recaptcha {
+    font:
+        300 18px/22px "Lato",
+        "Open Sans",
+        "Helvetica Nue",
+        sans-serif;
+    margin: 0 auto;
+}
+
+#g-recaptcha {
+    margin-top: 22px;
+    display: inline-block;
+}
+
+.contact-group {
+    background-color: var(--color-primary);
+}
+
+.contact-group input:focus,
+.contact-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+}
+
+.contact-group label {
+    display: block;
+    font-weight: bold;
+    color: var(--color-primary-dark);
+    margin: 22px 0;
+    cursor: pointer;
+}
+
+.contact-group input {
+    display: block;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--text-secondary);
+    padding: 22px;
+}
+
+.contact-group textarea {
+    display: block;
+    margin: 5px auto;
+    border: 1px solid var(--color-primary);
+    color: var(--text-secondary);
+    border-radius: 5px;
+    height: 120px;
+    width: 420px;
+    padding: 5px;
+}
+
+.contact-group select {
+    display: block;
+    margin: 5px 0;
+    border: 1px solid var(--color-primary);
+    color: var(--text-secondary);
+    border-radius: 5px;
+    padding: 22px;
+}
+
+#form-resp {
+    margin: 1rem auto;
+}
+
+#fax {
+    display: none;
+}
+
+/*
+===============================
+Blog Listings
+===============================
+*/
+
+.blog-listing {
+    padding: 12px;
+    border-bottom: 3px solid var(--color-secondary);
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.blog-listing:hover {
+    border-bottom-width: 5px;
+    background-color: var(--color-primary);
+    cursor: pointer;
+}
+
+.blog-listing-desc {
+    margin-top: 12px;
+}
+
+/*
+===============================
+Posts
+===============================
+*/
+
+.post p {
+    font-size: 22px;
+    line-height: 35px;
+}
+
+.post-tag {
+    padding: 10px;
+    font-size: 12px;
+}
+
+.post img {
+    display: block;
+    margin: 0 auto;
+    height: 520px;
+}
+
+.post code {
+    background: var(--color-code);
+    padding: 2px;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.post ul {
+    display: inline-block;
+    list-style: circle;
+    margin: 20px 50px 20px 50px;
+}
+
+.post li {
+    color: var(--color-primary-dark);
+    font-size: 22px;
+    margin: 8px;
+}
+
+/*
+===============================
+Theme
+===============================
+*/
+
+.theme-container {
+    margin-bottom: 10px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--text-primary);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--color-primary);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: var(--color-secondary);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-secondary);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/*
+===============================
+Media
+===============================
+*/
+
+@media screen and (max-width: 960px) {
+    .row,
+    .row-alt {
+        min-width: 400px;
+    }
+
+    .container,
+    .grid {
+        width: 400px;
+        padding: 5px;
+    }
+
+    aside {
+        display: block;
+    }
+
+    .nav {
+        width: 100vw;
+    }
+
+    .primary-nav li {
+        display: block;
+    }
+
+    .work-img {
+        height: 66px;
+    }
+
+    .col-1-3,
+    .col-2-3,
+    .col-1-2 {
+        width: 100%;
+    }
+
+    .contact-group textarea {
+        width: auto;
+    }
+
+    .contact-img {
+        width: 44px;
+    }
+
+    #work {
+        width: 248px;
+    }
+
+    .grid section:last-child {
+        h3 {
+            margin-top: 22px;
+        }
+    }
+
+    .experience-img {
+        height: 100px;
+    }
+
+    .form-wrapper.container {
+        padding: 0;
+    }
+
+    #broadcast p {
+        text-align: center;
+    }
+}

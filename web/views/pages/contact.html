@@ -1,0 +1,87 @@
+{{define "contact"}}
+<div class="form-wrapper container">
+    <h1 class="form-header">Get In Touch</h1>
+    <div class="form-wrapper-group">
+        <form
+            id="contactForm"
+            hx-post="/contact"
+            hx-target="#form-resp"
+            hx-target-error="#form-resp"
+            hx-validate
+            hx-disabled-elt="#submit-contact"
+        >
+            <fieldset class="contact-group">
+                <label for="name"> Name </label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="Your full name"
+                />
+                <label for="email"> Email Address </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="your.email@example.com"
+                />
+                <label for="subject"> Subject </label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    placeholder="What's this about?"
+                />
+                <label for="message">
+                    Message
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="12"
+                        required
+                        placeholder=""
+                    ></textarea>
+                </label>
+                <input
+                    type="checkbox"
+                    name="contact_me_by_fax_only"
+                    value="1"
+                    tabindex="-1"
+                    autocomplete="off"
+                    id="fax"
+                />
+                <input
+                    class="btn btn-alt"
+                    type="submit"
+                    name="submit"
+                    value="Send Message"
+                    data-sitekey="6LebplksAAAAANNsb0uPPHDMeJQLGaV2I87ADELF"
+                    data-callback="onSubmit"
+                    data-action="login"
+                />
+                <div
+                    id="g-recaptcha"
+                    data-sitekey="6LebplksAAAAANNsb0uPPHDMeJQLGaV2I87ADELF"
+                    data-action="login"
+                ></div>
+                <img
+                    class="htmx-indicator"
+                    src="/static/assets/loaders/bars.svg"
+                />
+                <div id="form-resp"></div>
+            </fieldset>
+        </form>
+        {{block "socials" .}}{{end}}
+    </div>
+</div>
+<script>
+    if (window.grecaptcha && window.grecaptcha.render) {
+        grecaptcha.enterprise.render("g-recaptcha", {
+            sitekey: "6LebplksAAAAANNsb0uPPHDMeJQLGaV2I87ADELF",
+        });
+    }
+</script>
+{{end}}

@@ -1,0 +1,21 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .green-fill { fill: #11ab4a; stroke: black; stroke-width: 4; }
+      .white-fill { fill: white; stroke: black; stroke-width: 4; }
+      .bracket { fill: none; stroke: black; stroke-width: 4; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <circle cx="80" cy="80" r="50" class="green-fill" />
+  <circle cx="200" cy="80" r="50" class="white-fill" />
+  <circle cx="320" cy="80" r="50" class="green-fill" />
+
+  <circle cx="80" cy="200" r="50" class="white-fill" />
+  <circle cx="200" cy="200" r="50" class="green-fill" />
+  <circle cx="320" cy="200" r="50" class="green-fill" />
+
+  <circle cx="80" cy="320" r="50" class="green-fill" />
+  <circle cx="200" cy="320" r="50" class="green-fill" />
+  <circle cx="320" cy="320" r="50" class="white-fill" />
+</svg>

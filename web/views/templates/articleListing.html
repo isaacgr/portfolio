@@ -1,0 +1,20 @@
+{{define "articleListing"}}
+<article 
+	class="blog-listing" 
+	hx-get="/blog/{{.Slug}}" 
+	hx-trigger="click" 
+	hx-push-url="/blog/{{.Slug}}"
+	hx-target="#main"
+	hx-target-4*="#main"
+	hx-target-5*="#main"
+	>
+    <h2>{{.FrontMatter.Title}}</h2>
+    <strong>
+    <p class="blog-listing-desc">{{.FrontMatter.Description}}</p>
+    </strong>
+    <p>{{.FrontMatter.CreatedAt}}</p>
+    {{range .FrontMatter.TagList}}
+    <div class="post-tag btn">{{.}}</div>
+    {{end}}
+</article>
+{{end}}
