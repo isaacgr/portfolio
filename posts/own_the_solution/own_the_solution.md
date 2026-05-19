@@ -1,12 +1,16 @@
 ---
 title: Owning the Solution
 description: Because at the end of the day, you will be the one that has to speak for it
-created_at: 2026-02-17
+created_at: 2026-05-02
 tags: software, management
 ---
 
-From a product team standpoint, we often have to trust that the solution being
-presented to us by the devs is the "best" available at the time. 
+My role as product specialist at work involves working together with both our
+developers, and with the service and deployments teams that work more directly
+with our customers. When we work through and deploy a fix or a feature,
+we have to trust that the solution being presented to us by the devs is the 
+"best" option available at the time. 
+
 It is of course important to trust your team, but its equally important to make 
 sure that you fully understand (and agree with) why a particular solution was 
 chosen. This includes knowing what alternatives were available, 
@@ -20,26 +24,34 @@ make when helping to guide a solution:
 
 ![Good, Fast, Cheap](./resources/good_fast_cheap.png)
 
-In my workplace, as I'm sure is the case with most workplaces, I find that 
-teams tend a bit more towards `Fast Turnaround` and `Cheap Development Cost`.
-This is not out of laziness; many products are mature, but have not gotten
+Our work is product driven in a cottage industry, so as much as possible
+we tend towards `Fast Turnaround` and `Cheap Development Cost`.
+
+This is not out of laziness; many of our products are mature, but have not gotten
 the time or resources dedicated to work out the baked in complexity of past 
-decisions. So the path of least resistance is usually to make something that 
+decisions. A good example of this is typically seen in 'first time' features;
+those which we developed to address (usually a single) customers needs. These
+changes must integrate with the rest of the existing product, which will get
+deployed on sites which do not have use for this change at all. So now when
+working through solutions on those sites, we must consider that 'oh well
+this customer is doing that one specific thing, and this change would break that
+workflow'.
+
+So the path of least resistance is to make something that 
 can work within our existing model, but which doesnt add another layer of code 
 debt that we can't remove in the future.
 
-And if you're new to a team, you are likely to resist pushing back on some of 
-the solutions built with this mentality. 
+And if you're new to the team, you're likely to resist pushing back on some of 
+the solutions built with this mentality, even if you arent convinced they are
+the preffered solution. 
 
 Because what do you know? All of these people have been here way longer than 
 you have, surely they're making the best possible decision for the product. 
 
-Right?
-
 Well those decisions are not always guided in that way, and it often requires 
-some bargaining with those  implementing the solution. 
+some bargaining with those implementing the solution. 
 
-We want to aim for an outcome that falls a little closer between 
+In general we want to aim for an outcome that falls closer between 
 `Good Solution` and `Cheap Development Cost`.
 
 The solution may take a bit longer than we'd like to implement and test, but 
