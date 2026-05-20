@@ -43,12 +43,11 @@ debt that we can't remove in the future.
 
 And if you're new to the team, you're likely to resist pushing back on some of 
 the solutions built with this mentality, even if you arent convinced they are
-the preffered solution. 
+the preffered solution. Because what do you know? All of these people have been 
+here longer than you have, surely they're making the best possible 
+decision for the product. Right?
 
-Because what do you know? All of these people have been here way longer than 
-you have, surely they're making the best possible decision for the product. 
-
-Well those decisions are not always guided in that way, and it often requires 
+Well those decisions are not always guided that way, and it often requires 
 some bargaining with those implementing the solution. 
 
 In general we want to aim for an outcome that falls closer between 
@@ -60,7 +59,7 @@ the available options are, and can communicate those effectively when looking fo
 feedback, then we will arrive at a solution that has a more lasting impact on 
 our users and the product.
 
-## Asking Questions Before Escalation
+## Asking Questions, Getting Feedback
 
 A couple of weeks ago, I had a more junior member of the team come to me for 
 some input on a feature. We'll call him Dave.
@@ -87,11 +86,12 @@ something that we can add to the web UI? If it's done via the CLI, then
 how are we expecting people to know about it? What if they type the wrong
 thing, we're going to tell them they have to schedule downtime to fix?".
 
-This then led to further questions, like if the web team was engaged at all, 
-why the developers think this is the only, or best, way to achieve the feature, 
-how he thought the deployment of the change would go over 
+This then led to further questions, like if the web team was engaged, 
+why the developers think this is the only or best way to achieve the feature, 
+how he thought the deployment of the change would go 
 (broadcast customers are generally live 24/7 and require tight overnight 
-windows to apply changes to the system). 
+windows to apply changes to the system), or if he knew what the customer was
+actually asking for.
 
 Ultimately we both agreed he had to go back and get a little bit more 
 understanding around the proposed solution, how and why its been implemented 
@@ -112,7 +112,7 @@ and can cost a lot of people time and energy to diagnose and fix.
 
 ## Gaining a Sense of Ownership
 
-Dave, at least at first, had not owned the solution. He largely trusted that 
+Dave at first had not owned the solution. He trusted that 
 the decisions being made were the most appropriate, and did not take the time 
 to understand why it was being implemented that way, what constraints in our
 system were forcing the solution down that path, and what alternatives 
