@@ -24,6 +24,7 @@ install:
 	cp -n $(BUILD_DIR)/config.ini $(CONFIG_DIR)/
 
 	cp -r $(BUILD_DIR)/web $(CONFIG_DIR)/
+	cp -r posts $(BLOG_DIR)/
 	ln -sf $(INSTALL_DIR)/$(MODULE_NAME)-$(VERSION) $(INSTALL_DIR)/$(MODULE_NAME)
 
 	@bash scripts/install.sh
