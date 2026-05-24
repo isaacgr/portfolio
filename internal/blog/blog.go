@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"slices"
+	"sort"
 	"strings"
 
 	"github.com/adrg/frontmatter"
@@ -91,6 +92,12 @@ func (n *BlogFinder) dispatch() {
 				n.log.Error("Unable to read from noteChan")
 			} else {
 				n.Articles = append(n.Articles, note)
+				// Source - https://stackoverflow.com/a/42872183
+				// Posted by AndreKR
+				// Retrieved 2026-05-24, License - CC BY-SA 3.0
+				sort.Slice(n.Articles, func(i, j int) bool {
+					return n.Articles[i].FrontMatter.CreatedAt > n.Articles[j].FrontMatter.CreatedAt
+				})
 				n.ArticlesBySlug[note.Slug] = note
 				n.parsedNotesChan <- note
 			}

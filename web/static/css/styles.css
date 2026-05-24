@@ -166,6 +166,33 @@ Fonts
     font-display: swap;
 }
 
+/*Open Sans*/
+@font-face {
+    font-family: "Open Sans";
+    src:
+        url("/fonts/OpenSans-VariableFont_wdth,wght.woff2")
+            format("woff2 supports variations"),
+        url("/fonts/OpenSans-VariableFont_wdth,wght.woff2")
+            format("woff2-variations");
+    font-weight: 300 400;
+    font-stretch: 75% 100%;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*Ubuntu Sans*/
+@font-face {
+    font-family: "Ubuntu Sans";
+    src:
+        url("/fonts/UbuntuSans-VariableFont_wdth,wght.woff2")
+            format("woff2 supports variations"),
+        url("/fonts/UbuntuSans-VariableFont_wdth,wght.woff2")
+            format("woff2-variations");
+    font-weight: 300 400;
+    font-stretch: 75% 100%;
+    font-style: normal;
+    font-display: swap;
+}
 /*
 ===============================
 Custom Syles
@@ -173,42 +200,42 @@ Custom Syles
 */
 
 :root {
-    --color-code: #c2c2c2;
+    --color-code: #e2e8f0;
 }
 
 [data-theme="light"] {
-    --color-bg: #f7f9f7;
-    --color-primary: #e3ede5;
-    --color-primary-dark: #5e8266;
-    --color-secondary: #4a6d7c;
-    --text-primary: #172a38;
-    --text-secondary: #46677b;
+    --color-bg: #f4f7f6; /* Cool mist white */
+    --color-primary: #e2eae7; /* Soft spruce tint */
+    --color-primary-dark: #1b3636; /* Deep pine green */
+    --color-secondary: #3b596b; /* Muted iron blue */
+    --text-primary: #0f1d26; /* Deep midnight blue */
+    --text-secondary: #435b66; /* Deep sea glass */
 }
 
 [data-theme="dark"] {
-    --color-bg: #241f29;
-    --color-primary: #3d4e56;
-    --color-primary-dark: #8fb397;
-    --color-secondary: #8bb1c4;
-    --text-primary: #e3ede5;
-    --text-secondary: #a3b8c2;
+    --color-bg: #202626; /* Dark spruce charcoal */
+    --color-primary: #2b3434; /* Muted forest shadow */
+    --color-primary-dark: #7da198; /* Frosted pine needle */
+    --color-secondary: #809bb0; /* Traditional soft indigo */
+    --text-primary: #e6eff2; /* Crisp mist white */
+    --text-secondary: #8fa0a6; /* Sea mist gray */
 }
 
 body {
     /*color image position repeat*/
     background: var(--color-bg);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     /*font-style font-variant font-wight font-size/line-height font-family*/
     font:
-        300 16px/22px "Lato",
-        "Liberation Mono",
+        300 18px/1.55 "Ubuntu Sans",
+        "Open Sans",
+        "Lato",
         "monospace",
         "Consolas",
-        "Open Sans",
-        "Helvetica Neue",
         Helvetica,
         Arial,
         sans-serif;
+    letter-spacing: 1px;
 }
 
 aside {
@@ -241,7 +268,7 @@ Grid
 
 .grid,
 .container {
-    width: 960px;
+    width: 1080px;
     margin: 30px auto;
 }
 
@@ -334,11 +361,12 @@ h1,
 h2,
 h3,
 h4 {
+    font-weight: 400;
     color: var(--text-primary);
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 35px;
     line-height: 44px;
 }
 
@@ -348,7 +376,7 @@ h2 {
 }
 
 h3 {
-    font-size: 25px;
+    font-size: 22px;
 }
 
 h4 {
@@ -379,10 +407,6 @@ i {
 
 .long {
     text-align: center;
-}
-
-p {
-    line-height: 28px;
 }
 
 /*
@@ -513,6 +537,7 @@ Pages
 .portfolio-section li {
     margin: 10px 0;
     font-size: 20px;
+    list-style: disc;
 }
 
 .portfolio-section article:not(:first-child) {
@@ -530,7 +555,6 @@ Pages
 #home p,
 #about p {
     font-size: 24px;
-    line-height: 44px;
     max-width: 960px;
     margin: 0 auto 22px auto;
 }
@@ -609,15 +633,11 @@ Contact
 }
 
 .contact-info-content h2 {
-    font-size: 28px;
-    font-weight: 400;
     margin-bottom: 16px;
     color: #fff;
 }
 
 .contact-info-content > p {
-    font-size: 16px;
-    line-height: 1.7;
     opacity: 0.85;
     margin-bottom: 40px;
 }
@@ -643,12 +663,10 @@ Contact
 }
 
 .contact-socials h3 {
-    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     opacity: 0.7;
     margin-bottom: 18px;
-    font-weight: 400;
     color: #fff;
 }
 
@@ -685,8 +703,6 @@ Contact
 }
 
 .contact-form-section h1 {
-    font-size: 26px;
-    font-weight: 400;
     margin-bottom: 30px;
     color: var(--text-primary);
 }
@@ -859,16 +875,22 @@ Experience
 
 #broadcast .container.grid {
     text-align: center;
-    line-height: 44px;
 }
 
 .experience-group {
+    background: var(--color-bg);
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
+    text-align: left;
 }
 
 #broadcast p {
+    color: var(--text-secondary);
     text-align: left;
 }
 
@@ -908,11 +930,6 @@ Posts
 ===============================
 */
 
-.post p {
-    font-size: 22px;
-    line-height: 35px;
-}
-
 .post-tag {
     padding: 10px;
     font-size: 12px;
@@ -924,23 +941,46 @@ Posts
     height: 520px;
 }
 
+/* 
+* If this conflicts with prismjs we might have to special case this in the AST
+*/
 .post code {
+    font-weight: 400;
     background: var(--color-code);
-    padding: 2px;
+    padding: 2px 8px 2px 8px;
     border-radius: 5px;
     color: #000000;
 }
 
-.post ul {
-    display: inline-block;
-    list-style: circle;
-    margin: 20px 50px 20px 50px;
+.post h2 {
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.post blockquote {
+    color: var(--text-primary);
+    margin: 3rem;
+    font-style: italic;
+    line-height: 26px;
 }
 
 .post li {
     color: var(--color-primary-dark);
-    font-size: 22px;
     margin: 8px;
+}
+
+.post ul {
+    display: inline-block;
+    list-style: disc;
+    margin: 0px 50px 0px 50px;
+}
+
+.post ol {
+    display: inline-block;
+    margin: 0px 50px 0px 50px;
+    li {
+        list-style: decimal;
+    }
 }
 
 /*
@@ -1030,7 +1070,7 @@ Media
 
     .container,
     .grid {
-        width: 400px;
+        width: 700px;
         padding: 5px;
     }
 
@@ -1042,12 +1082,8 @@ Media
         width: 100vw;
     }
 
-    .primary-nav li {
-        display: block;
-    }
-
     .work-img {
-        height: 66px;
+        height: 80px;
     }
 
     .col-1-3,

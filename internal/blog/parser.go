@@ -19,15 +19,6 @@ func modifyAst(doc ast.Node, slug string) ast.Node {
 			// /blog/{slug}/resources/image.png
 			// Update the image href to point to ./{slug}/resources/test.png
 			prefix := slug + "/"
-			//if strings.Contains(string(dst), "_resources/") {
-			//	s := strings.Replace(
-			//		string(dst),
-			//		"_resources/",
-			//		"resources/",
-			//		1,
-			//	)
-			//	dst = []byte(s)
-			//}
 			if strings.HasPrefix(string(dst), "./") {
 				s := strings.SplitAfter(string(dst), "./")
 				dst = append([]byte(prefix), []byte(s[1])...)

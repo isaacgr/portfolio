@@ -1,9 +1,8 @@
-package responder
+package api
 
 import (
 	"net/http"
 
-	"github.com/isaacgr/portfolio/internal/api"
 	"github.com/segmentio/encoding/json"
 )
 
@@ -51,7 +50,7 @@ func (r *responder) JSON(w http.ResponseWriter, status int, data any) {
 		r.Error(
 			w,
 			http.StatusInternalServerError,
-			api.Error{
+			Error{
 				Msg:  "Failed to encode response",
 				Code: http.StatusInternalServerError,
 				Data: "",
@@ -79,10 +78,10 @@ func (r *responder) Error(
 	status int,
 	err error,
 ) {
-	if e, ok := err.(api.Error); ok {
+	if e, ok := err.(Error); ok {
 		r.JSON(w, status, e)
 	} else {
-		e := api.Error{
+		e := Error{
 			Msg:  err.Error(),
 			Code: http.StatusInternalServerError,
 			Data: "",
