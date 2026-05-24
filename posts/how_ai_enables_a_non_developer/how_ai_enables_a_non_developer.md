@@ -46,20 +46,19 @@ Perhaps one of the more annoying aspects of this dynamic is that I get a lot
 feedback focusing more on criticizing the decisions made, rather than trying
 to understand why those decisions were made in the first place.
 
-Here are a couple of quotes from a recent interaction:
+Here are some quotes from a recent interaction:
 
-    > it seems like too much
-    > this seems complicated
-    > like its your first or second ever golang project [as a reason why my
-    potentially complex workflow was a bad idea]
-    > im speaking from experience which you dont have so just trust me
-
+> it seems like too much
+>
+> this seems complicated
+>
+> im speaking from experience which you dont have so just trust me
 
 The last one being particularly harsh, since I started self-teaching myself
 software in 2018.
 
 This is where AI comes in. Its not that I like being told "you're absolutely
-right!" (in fact, I use the [https://github.com/JuliusBrussee/caveman](caveman skill)
+right!" (in fact, I use the [caveman skill](https://github.com/JuliusBrussee/caveman)
 with Claude to keep things professional), but with AI I have a
 sound-board. Another *thing* that can have a discussion around the problem and
 consider my context; a stakeholder. AI will:

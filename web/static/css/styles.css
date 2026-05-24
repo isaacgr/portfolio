@@ -181,7 +181,7 @@ Custom Syles
     --color-primary: #e3ede5;
     --color-primary-dark: #5e8266;
     --color-secondary: #4a6d7c;
-    --text-primary: #172a38;
+    --text-primary: #2d3748;
     --text-secondary: #46677b;
 }
 
@@ -200,15 +200,14 @@ body {
     color: var(--text-secondary);
     /*font-style font-variant font-wight font-size/line-height font-family*/
     font:
-        300 16px/22px "Lato",
-        "Liberation Mono",
+        400 16px/22px "Lato",
         "monospace",
         "Consolas",
         "Open Sans",
-        "Helvetica Neue",
         Helvetica,
         Arial,
         sans-serif;
+    letter-spacing: 1px;
 }
 
 aside {
@@ -241,7 +240,7 @@ Grid
 
 .grid,
 .container {
-    width: 960px;
+    width: 1080px;
     margin: 30px auto;
 }
 
@@ -382,7 +381,7 @@ i {
 }
 
 p {
-    line-height: 28px;
+    line-height: 44px;
 }
 
 /*
@@ -808,8 +807,7 @@ Posts
 */
 
 .post p {
-    font-size: 22px;
-    line-height: 35px;
+    font-size: 26px;
 }
 
 .post-tag {
@@ -830,15 +828,26 @@ Posts
     color: #000000;
 }
 
+.post blockquote {
+    color: var(--text-primary);
+    margin: 3rem;
+    font-style: italic;
+    line-height: 26px;
+    & > p {
+        font-size: 22px;
+    }
+}
+
 .post ul {
     display: inline-block;
-    list-style: circle;
-    margin: 20px 50px 20px 50px;
+    list-style: disc;
+    margin: 0px 50px 0px 50px;
 }
 
 .post li {
     color: var(--color-primary-dark);
-    font-size: 22px;
+    font-size: 28px;
+    line-height: 40px;
     margin: 8px;
 }
 
