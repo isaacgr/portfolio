@@ -29,9 +29,11 @@ utilize a microservice architecture, though most of the services are far from
 see if they can provide any feedback or guidance on my decisions. And that is
 where I tend to hit a roadblock.
 
+## Not exactly gatekeeping
+
 I'd like to be clear that in no way do I feel entitled to anyones help. Everyone
 has their own priorities, and unless your work overlaps directly with someone
-elses chances are they wont be able to find the bandwidth to help you with it.
+elses, chances are they wont be able to find the bandwidth to help you with it.
 
 So it becomes hard to find professional input on my problems. Our team is close,
 we go to lunch together, go out for drinks, communicate outside of work, but
@@ -57,6 +59,8 @@ Here are some quotes from a recent interaction:
 The last one being particularly harsh, since I started self-teaching myself
 software in 2018.
 
+## Writers block
+
 This is where AI comes in. Its not that I like being told "you're absolutely
 right!" (in fact, I use the [caveman skill](https://github.com/JuliusBrussee/caveman)
 with Claude to keep things professional), but with AI I have a
@@ -75,5 +79,4 @@ for making decisions that seem bad at the surface, but perhaps were necessary gi
 the project scope. I'm able to get concrete responses on what to do next, how best
 to move forward past the current hurdle, and what the possible ways are to handle the
 next set of challenges. 
-
 
