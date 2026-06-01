@@ -174,12 +174,25 @@ Fonts
             format("woff2 supports variations"),
         url("/fonts/OpenSans-VariableFont_wdth,wght.woff2")
             format("woff2-variations");
-    font-weight: 300 400; /* Adjust based on the actual range of your file */
-    font-stretch: 75% 100%; /* If your file includes width variations */
+    font-weight: 300 400;
+    font-stretch: 75% 100%;
     font-style: normal;
-    font-display: swap; /* Prevents invisible text while loading */
+    font-display: swap;
 }
 
+/*Ubuntu Sans*/
+@font-face {
+    font-family: "Ubuntu Sans";
+    src:
+        url("/fonts/UbuntuSans-VariableFont_wdth,wght.woff2")
+            format("woff2 supports variations"),
+        url("/fonts/UbuntuSans-VariableFont_wdth,wght.woff2")
+            format("woff2-variations");
+    font-weight: 300 400;
+    font-stretch: 75% 100%;
+    font-style: normal;
+    font-display: swap;
+}
 /*
 ===============================
 Custom Syles
@@ -214,7 +227,8 @@ body {
     color: var(--text-primary);
     /*font-style font-variant font-wight font-size/line-height font-family*/
     font:
-        300 18px/1.55 "Open Sans",
+        300 18px/1.55 "Ubuntu Sans",
+        "Open Sans",
         "Lato",
         "monospace",
         "Consolas",

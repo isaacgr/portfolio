@@ -50,21 +50,21 @@ to understand why those decisions were made in the first place.
 
 Here are some quotes from a recent interaction:
 
-> it seems like too much
+> [what I was doing] seems like too much
 >
 > this seems complicated
 >
 > im speaking from experience which you dont have so just trust me
 
 The last one being particularly harsh, since I started self-teaching myself
-software in 2018.
+software and putting in the work since 2018.
 
 ## Writers block
 
-This is where AI comes in. Its not that I like being told "you're absolutely
+This is where AI can really show its worth. Its not that I like being told "you're absolutely
 right!" (in fact, I use the [caveman skill](https://github.com/JuliusBrussee/caveman)
 with Claude to keep things professional), but with AI I have a
-sound-board. Another *thing* that can have a discussion around the problem and
+sound-board. Another *voice* that can have a discussion around the problem and
 consider my context; a stakeholder. AI will:
 
 - understand what I'm trying to achive, and relate that what I have done in the past
