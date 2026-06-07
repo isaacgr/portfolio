@@ -170,9 +170,9 @@ Fonts
 @font-face {
     font-family: "Open Sans";
     src:
-        url("/fonts/OpenSans-VariableFont_wdth,wght.woff2")
+        url("../assets/fonts/OpenSans/OpenSans-VariableFont_wdth,wght.ttf")
             format("woff2 supports variations"),
-        url("/fonts/OpenSans-VariableFont_wdth,wght.woff2")
+        url("../assets/fonts/OpenSans/OpenSans-VariableFont_wdth,wght.ttf")
             format("woff2-variations");
     font-weight: 300 400;
     font-stretch: 75% 100%;
@@ -184,9 +184,9 @@ Fonts
 @font-face {
     font-family: "Ubuntu Sans";
     src:
-        url("/fonts/UbuntuSans-VariableFont_wdth,wght.woff2")
+        url("../assets/fonts/UbuntuSans/UbuntuSans-VariableFont_wdth,wght.ttf")
             format("woff2 supports variations"),
-        url("/fonts/UbuntuSans-VariableFont_wdth,wght.woff2")
+        url("../assets/fonts/UbuntuSans/UbuntuSans-VariableFont_wdth,wght.ttf")
             format("woff2-variations");
     font-weight: 300 400;
     font-stretch: 75% 100%;
