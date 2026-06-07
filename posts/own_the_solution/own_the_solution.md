@@ -3,6 +3,7 @@ title: Owning the Solution
 description: Because at the end of the day, you will be the one that has to speak for it
 created_at: 2026-05-02
 tags: software, management, onboarding
+skip: true
 ---
 
 My role as product specialist at work involves working together with both our

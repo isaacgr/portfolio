@@ -56,6 +56,7 @@ type FrontMatter struct {
 	CreatedAt   string   `yaml:"created_at"`
 	UpdatedAt   string   `yaml:"updated_at"`
 	TagString   string   `yaml:"tags"` // Comma separated list of tags, improper yaml format
+	Skip        bool     `yaml:"skip"`
 }
 
 func NewBlogFinder(
@@ -148,6 +149,16 @@ func (n *BlogFinder) parseNotes(file File) {
 			file.path,
 			"Error",
 			err,
+		)
+		return
+	}
+	if fm.Skip {
+		n.log.Info(
+			"Skipping note",
+			"File",
+			file.entry.Name(),
+			"Title",
+			fm.Title,
 		)
 		return
 	}

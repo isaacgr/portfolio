@@ -122,7 +122,7 @@ And now I can spend time trying the methods
 out and doing my own research into the cost/benefit of each. 
 
 Of course I often find contradictions to what the AI suggests, which is good. 
-Those can lead me down a fun rabbit hole of stdlib docs, stack overflow and 
+Those can lead me down a fun rabbit hole of stdlib docs, stack overflow posts, and 
 github issues. (I am not sure why, but theres something quite rewarding about
 walking through the [go docs](https://pkg.go.dev/std) and using them to piece
 together my own solution).
