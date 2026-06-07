@@ -18,8 +18,8 @@ import (
 	"time"
 
 	"github.com/isaacgr/loggir"
+	"github.com/isaacgr/portfolio/internal/api"
 	"github.com/isaacgr/portfolio/internal/api/portfolio"
-	"github.com/isaacgr/portfolio/internal/api/responder"
 	"github.com/isaacgr/portfolio/internal/blog"
 	"github.com/isaacgr/portfolio/internal/config"
 	"github.com/isaacgr/portfolio/internal/server"
@@ -72,7 +72,7 @@ func main() {
 	serverLog := log.With("module", "server")
 
 	c, err := config.NewConfigProvider(
-		flags.ConfigDir + flags.ConfigFile,
+		flags.ConfigDir+flags.ConfigFile,
 		configLog,
 	)
 	if err != nil {
@@ -126,7 +126,7 @@ func main() {
 	renderer, err := server.NewTemplateRenderer(
 		flags.ConfigDir + "web/views",
 	)
-	responder := responder.NewResponder()
+	responder := api.NewResponder()
 
 	if err != nil {
 		log.Error("Unable to parse templates.", "Error", err.Error())

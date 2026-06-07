@@ -6,13 +6,12 @@ import (
 	"net/http"
 
 	"github.com/isaacgr/portfolio/internal/api"
-	"github.com/isaacgr/portfolio/internal/api/responder"
 	"github.com/isaacgr/portfolio/internal/blog"
 	"github.com/isaacgr/portfolio/internal/server"
 )
 
 type PortfolioApi struct {
-	responder       responder.Responder
+	responder       api.Responder
 	log             *slog.Logger
 	uri             string
 	renderer        *server.TemplateRenderer
@@ -23,7 +22,7 @@ type PortfolioApi struct {
 }
 
 func NewPortfolioApi(
-	r responder.Responder,
+	r api.Responder,
 	logger *slog.Logger,
 	renderer *server.TemplateRenderer,
 	blogFinder *blog.BlogFinder,
