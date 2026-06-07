@@ -4,7 +4,7 @@ description: |
     How AI is helping me get over my writers block and build tools without 
     access to code reviewers, mentor feedback or stake holders
 created_at: 2026-05-20
-tags: software, ai, product management
+tags: software, ai
 ---
 
 ## Background
