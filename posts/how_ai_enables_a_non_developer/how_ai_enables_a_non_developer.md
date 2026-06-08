@@ -1,5 +1,5 @@
 ---
-title: "AI: Artificial Soundboard"
+title: "AI won't replace your mentor, but it might be the only one available"
 description: |
     How AI is helping me get over my writers block and build tools without 
     access to code reviewers, mentor feedback or stake holders
@@ -7,7 +7,8 @@ created_at: 2026-05-20
 tags: software, ai
 ---
 
-## Background
+
+## I have no one else to take a stake in my code
 
 My work tends more towards product management, "dev-ops" tooling, and product 
 verification. We wear several hats at my job, so even the 
@@ -42,7 +43,7 @@ we go to lunch together, go out for drinks, message outside of work, but
 the software I'm writing does not excite them. It doesnt tie into their work, 
 which is more directly tied to the product as opposed being a "side" project.
 So they dont tend to offer a lot of input on it. I ask them about whatever problem I'm
-working through, and they do occassionaly listen and give some feedback, 
+working through, and they do occasionally listen and give some feedback, 
 but its not with any *passion*. It cant be.
 They're not engaging on the core problem, trying to identify gaps, wanting to
 look at the code with me to see what I'm doing or what I can do better. 
@@ -92,7 +93,7 @@ help me get to the next step in the process.
 
 AI will:
 
-- understand what I'm trying to achive, and relate that what I have done in the past
+- understand what I'm trying to achieve, and relate that what I have done in the past
 - provide some back and forth on specific implementation ideas
 - not assume the decisions I've made until this point are bad, or misinformed
 - provide code review
@@ -126,6 +127,104 @@ Those can lead me down a fun rabbit hole of stdlib docs, stack overflow posts, a
 github issues. (I am not sure why, but theres something quite rewarding about
 walking through the [go docs](https://pkg.go.dev/std) and using them to piece
 together my own solution).
+
+### Case Study: Designing a Generic Graph API
+
+I was building a Go wrapper around [Apache AGE](https://age.apache.org/age-manual/master/intro/overview.html).
+I'm working on a tool that models customer data (things like package versions,
+installed hardware, current and outstanding POs etc.) using a graph.
+I had a `CreateVertex` method that needed to accept different vertex
+types: Roles, Users, Permissions etc. each with their own properties. This is
+all fairly out of my depth, and something I've been excited to dive into.
+
+The problem was that my GraphQL models are all strongly typed, but the graph 
+layer needed to be generic.
+
+I opened Claude and asked: "What's a good way to pass arbitrary
+vertex property fields to CreateVertex?"
+
+#### The Options
+
+It gave me three approaches:
+
+ 1. map[string]any
+    - simple, pass properties as a map
+ 2. any with reflection
+    - accept any struct, marshal to JSON, then to map
+ 3. Interface with `ToProperties()`
+    - define a contract for vertex inputs
+
+Its recommendation was Option 2, since I was
+already using `json.Unmarshal` elsewhere. Fair enough.
+
+#### Drilling Down
+
+But I was unsure: "How do I build the Cypher properties string? Cypher map keys
+can't be wrapped in quotes." 
+
+This is where I have to be careful. Instead of searching through Cypher docs and AGE
+source code, I got a working `buildPropsString` function complete with
+string escaping, nulls, bools, and numbers. Now it did flag considerations I
+hadn't thought of, like sanitizing keys from user input, escaping single quotes
+and handling nested objects but it still has a bit of a compulsion to actually
+provide you with a full on solution.
+
+#### Challenging the Suggestion
+
+I then asked: "Should ToProperties() return a map or a string?"
+
+The answer was maps—keep the model layer unaware of Cypher syntax. That made
+sense. Separation of concerns.
+
+But I pushed back: "Is there anything in the Apache AGE driver that does
+this already? Where did you get this info?"
+
+This is important. AI will confidently present solutions that may or may not
+exist in the ecosystem. It admitted it derived `buildPropsString` from Cypher
+syntax rules, not from any library. The AGE Go driver handles parsing results,
+not building properties. Good to know that I wasn't missing an obvious stdlib
+function.
+
+#### Arriving at the Solution
+
+Finally, I questioned the interface pattern itself: "Is there even a point to
+the interface? My [gqlgen](https://gqlgen.com/) models would all need to implement it. 
+Can't I just pass the map directly?"
+
+"yes, skip the interface. YAGNI. The repository layer already knows
+the model—it can build the map inline" (I had to google what 'yagni' meant).
+
+```go
+func (r *Role) Create(
+ctx context.Context, 
+id string, 
+input model.CreateRoleInput
+) (*model.Role, error) {
+     dest := &model.Role{}
+     err := r.graph.CreateVertex(ctx, r.label, map[string]any{
+         "id":   id,
+         "name": input.Name,
+     }, &dest)
+ return dest, err
+}
+```
+
+I know the above looks trivial, but the access patterns and abstractions it took
+to get here are things that I am pretty unconfident with. Ultimately the above
+method accessed via the repository pattern was excellent boilerplate for me
+to move forward with elsewhere.
+
+#### What AI Did Here
+
+ - Gave me three concrete options instead of one "right" answer
+ - Provided working code I could test immediately
+ - Answered follow-ups without losing context
+ - Admitted when information came from syntax rules vs. actual libraries
+ - Let me challenge suggestions and course-correct
+
+I didn't ask it to write the solution. I asked it to help me think through
+the solution. The final decision, which was to skip the interface and use maps, 
+was my own, informed by the tradeoffs we discussed together.
 
 ### Code review: still hit or miss
 
@@ -161,7 +260,7 @@ had decided to implement its own HTTP client, without any of the security checks
 I had caked in, simply because I didnt have an existing method to return the
 raw response object.
 
-## Ultimately not a replacement
+## A workflow for solo devs
 
 Of course, this is no replacement for actual human engagement. When I can get
 input from a colleague its often insightful, well thought out and
@@ -176,8 +275,21 @@ solution to have a better understanding of the pitfalls. With more carefully
 considered code commentary I dont have to do that as much, since the behavior is much more
 clear.
 
-I'm sure this post may seem a bit sad. I have AI help me work through code
-because I have no one who is interested in it. But I'm sure, especially now, a
+Most AI coding is framed around replacing your own time. "Write a thing that
+does X", "Review this code and apply all recommendations", "Re-write this in rust".
+Most AI coding advice is about generating code faster. AI is more valuable as a 
+collaborator than a typist.
+
+### tl;dr
+
+1. Use `/plan mode`
+2. Ask questions, challenge the output
+3. RTFM
+4. Limit review passes
+5. Do your own research before implementing a solution
+
+I have AI help me work through code because I have no one who is interested in it. 
+But I'm sure, especially now, a
 lot of people are finding themselves in this position. And I'm also sure there
 arent as many who get to enjoy the journey, and are just in it for
 the destination. 
