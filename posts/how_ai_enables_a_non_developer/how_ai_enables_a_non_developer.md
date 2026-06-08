@@ -131,13 +131,26 @@ together my own solution).
 ### Case Study: Designing a Generic Graph API
 
 I was building a Go wrapper around [Apache AGE](https://age.apache.org/age-manual/master/intro/overview.html).
+
 I'm working on a tool that models customer data (things like package versions,
-installed hardware, current and outstanding POs etc.) using a graph.
+installed hardware, current and outstanding POs etc.) using a graph. The idea
+is to replace some software we use for this tracking that has not been updated
+since the early 2000's. Not that theres anything wrong with old software if it
+works, it just more that our use cases, access patterns and products have
+evolved significantly since then and it no longer meets a lot of new requirements.
+
+Below is a fun answer I got when looking into the API for automation.
+
+> The system was not designed by us, we just maintain it. 
+> So, if the data is not coming through API, most likely no such API exists
+
+Anyway.
+
 I had a `CreateVertex` method that needed to accept different vertex
 types: Roles, Users, Permissions etc. each with their own properties. This is
 all fairly out of my depth, and something I've been excited to dive into.
 
-The problem was that my GraphQL models are all strongly typed, but the graph 
+The problem was that my models are all strongly typed, but the graph 
 layer needed to be generic.
 
 I opened Claude and asked: "What's a good way to pass arbitrary
@@ -147,15 +160,19 @@ vertex property fields to CreateVertex?"
 
 It gave me three approaches:
 
- 1. map[string]any
+1. map[string]any
     - simple, pass properties as a map
- 2. any with reflection
+    - I didnt like this as much, since I lose the type safety
+
+2. any with reflection
     - accept any struct, marshal to JSON, then to map
- 3. Interface with `ToProperties()`
+
+3. Interface with `ToProperties()`
     - define a contract for vertex inputs
 
-Its recommendation was Option 2, since I was
-already using `json.Unmarshal` elsewhere. Fair enough.
+Its recommendation was option 2, since I was
+already using `json.Unmarshal` elsewhere. Though I didnt like the use of reflection,
+and opted to persue option 1.
 
 #### Drilling Down
 
@@ -198,14 +215,14 @@ the model—it can build the map inline" (I had to google what 'yagni' meant).
 func (r *Role) Create(
 ctx context.Context, 
 id string, 
-input model.CreateRoleInput
+input model.CreateRoleInput,
 ) (*model.Role, error) {
-     dest := &model.Role{}
-     err := r.graph.CreateVertex(ctx, r.label, map[string]any{
-         "id":   id,
-         "name": input.Name,
-     }, &dest)
- return dest, err
+    dest := &model.Role{}
+    err := r.graph.CreateVertex(ctx, r.label, map[string]any{
+        "id":   id,
+        "name": input.Name,
+    }, &dest)
+    return dest, err
 }
 ```
 
@@ -277,7 +294,7 @@ clear.
 
 Most AI coding is framed around replacing your own time. "Write a thing that
 does X", "Review this code and apply all recommendations", "Re-write this in rust".
-Most AI coding advice is about generating code faster. AI is more valuable as a 
+Most AI coding advice is about generating code faster. I find AI is more valuable as a 
 collaborator than a typist.
 
 ### tl;dr
@@ -291,7 +308,7 @@ collaborator than a typist.
 I have AI help me work through code because I have no one who is interested in it. 
 But I'm sure, especially now, a
 lot of people are finding themselves in this position. And I'm also sure there
-arent as many who get to enjoy the journey, and are just in it for
+arent as many who want to enjoy the journey, and are just in it for
 the destination. 
 
 We love crafting code and finally have a voice around that 

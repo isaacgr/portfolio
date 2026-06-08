@@ -964,11 +964,6 @@ Posts
     line-height: 26px;
 }
 
-.post li {
-    color: var(--color-primary-dark);
-    margin: 8px;
-}
-
 .post ul {
     display: inline-block;
     list-style: disc;
@@ -978,8 +973,19 @@ Posts
 .post ol {
     display: inline-block;
     margin: 0px 50px 0px 50px;
-    li {
+    > li {
         list-style: decimal;
+    }
+}
+
+.post li {
+    color: var(--color-primary-dark);
+    margin: 8px;
+
+    > * {
+        list-style: disc;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
