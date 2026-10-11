@@ -14,7 +14,7 @@ if [ ! -f "$CSS_FILE" ]; then
     exit 1
 fi
 if [ ! -f "$JS_FILE" ]; then
-    echo "Error: JS file $CSS_FILE not found."
+    echo "Error: JS file $JS_FILE not found."
     exit 1
 fi
 

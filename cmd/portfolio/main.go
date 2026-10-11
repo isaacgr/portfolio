@@ -18,11 +18,9 @@ import (
 	"time"
 
 	"github.com/isaacgr/loggir"
-	"github.com/isaacgr/portfolio/internal/api"
-	"github.com/isaacgr/portfolio/internal/api/portfolio"
 	"github.com/isaacgr/portfolio/internal/blog"
 	"github.com/isaacgr/portfolio/internal/config"
-	"github.com/isaacgr/portfolio/internal/server"
+	"github.com/isaacgr/portfolio/internal/webserver"
 )
 
 type Flags struct {
@@ -99,7 +97,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	recaptchaParams := server.ReCaptchaParams{
+	recaptchaParams := webserver.ReCaptchaParams{
 		Key:         c.Config.Key,
 		ProjectID:   c.Config.ProjectID,
 		Action:      c.Config.Action,
@@ -116,23 +114,25 @@ func main() {
 	postChan := make(chan blog.Article, 1024)
 	blogFinder := blog.NewBlogFinder(blogPath, []string{".md"}, nil, postChan, log)
 
-	s := server.NewWebServer(
+	s := webserver.NewWebServer(
 		host,
 		port,
 		shutdownCtx,
 		webLog,
 	)
 
-	renderer, err := server.NewTemplateRenderer(
-		flags.ConfigDir + "web/views",
+	renderer := webserver.NewRenderer(
+		log.With("webserver", "renderer"),
 	)
-	responder := api.NewResponder()
+	err = renderer.ParseTemplates()
 
 	if err != nil {
 		log.Error("Unable to parse templates.", "Error", err.Error())
 	}
 
-	mailClient, err := server.NewMailClient(
+	responder := webserver.NewResponder()
+
+	mailClient, err := webserver.NewMailClient(
 		c.Config.SMTPHost,
 		c.Config.SMTPUser,
 		c.Config.SMTPPass,
@@ -143,24 +143,26 @@ func main() {
 		log.Error("Unable to create mail client.", "Error", err.Error())
 	}
 
-	portfolioApi := portfolio.NewPortfolioApi(
+	portfolioApi := webserver.NewHandler(
 		responder,
 		portfolioLog,
 		renderer,
 		blogFinder,
 		mailClient,
 		recaptchaParams,
-		flags.ConfigDir+"web/static",
 	)
 
-	portfolioApi.RegisterRoutes(s.Handler)
+	portfolioApi.Register(s.Handler)
 
 	blogFinder.Start()
 	s.Start()
-
-	<-sigChan
-	s.Stop()
-	signal.Stop(sigChan)
-	close(sigChan)
 	defer shutdownRelease()
+
+	select {
+	case <-sigChan:
+		log.Info("Shutting down due to signal")
+		s.Stop()
+		signal.Stop(sigChan)
+		close(sigChan)
+	}
 }
