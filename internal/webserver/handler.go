@@ -101,7 +101,10 @@ func (s *RootHandler) handleIndex(
 	}
 	var buf bytes.Buffer
 	var err error
-	err = s.renderer.Render(&buf, "home", nil)
+	homeData := map[string]any{
+		"Articles": s.blogFinder.Articles,
+	}
+	err = s.renderer.Render(&buf, "home", homeData)
 	data := map[string]any{
 		"Title":       Title,
 		"Sitename":    Sitename,
@@ -200,9 +203,10 @@ func (s *RootHandler) handleBlogPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	post := map[string]any{
-		"Title": article.FrontMatter.Title,
-		"Tags":  article.FrontMatter.TagList,
-		"Post":  template.HTML(article.HTML),
+		"Title":     article.FrontMatter.Title,
+		"Tags":      article.FrontMatter.TagList,
+		"Post":      template.HTML(article.HTML),
+		"CreatedAt": article.FrontMatter.CreatedAt,
 	}
 	var buf bytes.Buffer
 	var err error

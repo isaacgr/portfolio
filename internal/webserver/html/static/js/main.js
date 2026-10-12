@@ -28,71 +28,80 @@ document.body.addEventListener("htmx:afterSwap", function() {
   }
 });
 
-/**
-* Utility function to calculate the current theme setting.
-* Look for a local storage value.
-* Fall back to system setting.
-* Fall back to light mode.
-*/
-function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
-  if (localStorageTheme !== null) {
-    return localStorageTheme;
-  }
+function getPreferredTheme() {
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark" || saved === "light") {
+      return saved;
+    }
+  } catch (e) {}
 
-  if (systemSettingDark.matches) {
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     return "dark";
   }
-
   return "light";
 }
 
-/**
-* Utility function to update the button text and aria-label.
-*/
-function updateButton({ buttonEl, isDark }) {
-  const newCta = isDark ? true : false;
-  buttonEl.checked = newCta;
+function applyTheme(theme) {
+  const t = theme === "dark" ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", t);
+  if (document.body) {
+    document.body.setAttribute("data-theme", t);
+  }
+  try {
+    localStorage.setItem("theme", t);
+  } catch (e) {}
+
+  const isDark = t === "dark";
+  const label = isDark ? "Switch to light mode" : "Switch to dark mode";
+  document.querySelectorAll("[data-theme-toggle]").forEach(function(btn) {
+    btn.setAttribute("aria-label", label);
+    btn.setAttribute("title", label);
+    btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+  });
 }
 
-/**
-* Utility function to update the theme setting on the html tag
-*/
-function updateThemeOnHtmlEl({ theme }) {
-  document.querySelector("html").setAttribute("data-theme", theme);
-}
-
-
-/**
-* On page load:
-*/
-
-/**
-* 1. Grab what we need from the DOM and system settings on page load
-*/
-const button = document.querySelector("[data-theme-toggle]");
-const localStorageTheme = localStorage.getItem("theme");
-const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-/**
-* 2. Work out the current site settings
-*/
-let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, systemSettingDark });
-
-/**
-* 3. Update the theme setting and button text accoridng to current settings
-*/
-updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
-updateThemeOnHtmlEl({ theme: currentThemeSetting });
-
-/**
-* 4. Add an event listener to toggle the theme
-*/
-button.addEventListener("change", (event) => {
-  const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
-
-  localStorage.setItem("theme", newTheme);
-  updateButton({ buttonEl: button, isDark: newTheme === "dark" });
-  updateThemeOnHtmlEl({ theme: newTheme });
-
-  currentThemeSetting = newTheme;
+// Event delegation handles clicks on toggle button or its child SVGs
+document.addEventListener("click", function(event) {
+  const toggleBtn = event.target.closest("[data-theme-toggle]");
+  if (!toggleBtn) return;
+  event.preventDefault();
+  const current = document.documentElement.getAttribute("data-theme") || getPreferredTheme();
+  const next = current === "dark" ? "light" : "dark";
+  applyTheme(next);
 });
+
+// Follow system theme changes if no explicit user preference
+if (window.matchMedia) {
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(e) {
+    try {
+      if (localStorage.getItem("theme")) return;
+    } catch (err) {}
+    applyTheme(e.matches ? "dark" : "light");
+  });
+}
+
+// Initial application on script load
+applyTheme(getPreferredTheme());
+
+/**
+* Highlight the nav link for the current page.
+* Called on load and after every htmx navigation / history restore.
+*/
+function updateActiveNav() {
+  const path = window.location.pathname;
+  const section = path === "/" ? "home" : path.split("/")[1];
+
+  document.querySelectorAll("[data-nav]").forEach((link) => {
+    if (link.dataset.nav === section) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+updateActiveNav();
+document.body.addEventListener("htmx:pushedIntoHistory", updateActiveNav);
+document.body.addEventListener("htmx:historyRestore", updateActiveNav);
+window.addEventListener("popstate", updateActiveNav);

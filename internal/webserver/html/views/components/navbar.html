@@ -1,48 +1,60 @@
 {{define "navbar"}}
-<nav class="primary-nav nav">
-    <div class="theme-container">{{block "theme" .}}{{end}}</div>
-    <ul>
+<nav class="primary-nav" aria-label="Primary">
+    <ul class="nav-list">
         <li>
             <a
+                class="nav-link"
+                href="/"
+                data-nav="home"
                 hx-get="/home"
                 hx-push-url="/"
-                hx-swap="outerHTML"
+                hx-swap="outerHTML show:window:top transition:true"
                 hx-select="#main"
                 hx-target="#main"
                 hx-target-5*="#main"
                 >Home</a
             >
         </li>
-        <li>&#183;</li>
         <li>
             <a
+                class="nav-link"
+                href="/experience"
+                data-nav="experience"
                 hx-get="/experience"
                 hx-push-url="/experience"
+                hx-swap="innerHTML show:window:top transition:true"
                 hx-target="#main"
                 hx-target-5*="#main"
                 >Experience</a
             >
         </li>
-        <li>&#183;</li>
         <li>
             <a
+                class="nav-link"
+                href="/blog"
+                data-nav="blog"
                 hx-get="/blog"
                 hx-push-url="/blog"
+                hx-swap="innerHTML show:window:top transition:true"
                 hx-target="#main"
                 hx-target-5*="#main"
                 >Blog</a
             >
         </li>
-        <li>&#183;</li>
         <li>
             <a
+                class="nav-link"
+                href="/contact"
+                data-nav="contact"
                 hx-get="/contact"
                 hx-push-url="/contact"
+                hx-swap="innerHTML show:window:top transition:true"
                 hx-target="#main"
                 hx-target-5*="#main"
                 >Contact</a
             >
         </li>
     </ul>
+    {{block "theme" .}}{{end}}
 </nav>
 {{end}}

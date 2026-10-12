@@ -1,0 +1,57 @@
+{{/* 
+Original customer logo cloud template.
+Preserved as .disabled so it is not loaded into the template engine.
+*/}}
+{{define "work_legacy_logos"}}
+<ul id="work" class="logo-cloud">
+    <li class="logo-tile">
+        <img
+            class="work-img"
+            src="/static/assets/images/work/Accenture_logo.svg"
+            alt="Accenture"
+        />
+    </li>
+    <li class="logo-tile">
+        <img
+            class="work-img"
+            src="/static/assets/images/work/Amazon_logo.svg"
+            alt="Amazon"
+        />
+    </li>
+    <li class="logo-tile">
+        <img
+            class="work-img"
+            src="/static/assets/images/work/CNN.svg"
+            alt="CNN"
+        />
+    </li>
+    <li class="logo-tile">
+        <img
+            class="work-img"
+            src="/static/assets/images/work/ESPN_wordmark.svg"
+            alt="ESPN"
+        />
+    </li>
+    <li class="logo-tile">
+        <img
+            class="work-img"
+            src="/static/assets/images/work/NBC_logo_2022_(vertical).svg"
+            alt="NBC"
+        />
+    </li>
+    <li class="logo-tile">
+        <img
+            class="work-img"
+            src="/static/assets/images/work/nba-logo-vector.svg"
+            alt="NBA"
+        />
+    </li>
+    <li class="logo-tile">
+        <img
+            class="work-img"
+            src="/static/assets/images/work/Warner_Bros._Discovery.svg"
+            alt="WBD"
+        />
+    </li>
+</ul>
+{{end}}

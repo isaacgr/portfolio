@@ -9,6 +9,7 @@ import (
 	"log/slog"
 	"path/filepath"
 	"slices"
+	"time"
 )
 
 //go:embed html/static
@@ -36,10 +37,21 @@ func RenderSafeComments(s string) template.HTML {
 	return template.HTML(s)
 }
 
+func FormatDate(s string) string {
+	if s == "" {
+		return ""
+	}
+	if t, err := time.Parse("2006-01-02", s); err == nil {
+		return t.Format("Jan 2, 2006")
+	}
+	return s
+}
+
 func NewRenderer(log *slog.Logger) *Renderer {
 	funcMap := template.FuncMap{
 		// {{ safe <!--Some HTML Comment--> }}
-		"safe": RenderSafeComments,
+		"safe":       RenderSafeComments,
+		"formatDate": FormatDate,
 	}
 	root := template.New("").Funcs(funcMap)
 	return &Renderer{
