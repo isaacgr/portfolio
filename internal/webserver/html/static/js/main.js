@@ -19,12 +19,17 @@ window.initCaptcha = function() {
 document.getElementById("copy-year").textContent =
   new Date().getFullYear();
 
-document.body.addEventListener("htmx:afterSwap", function() {
+document.body.addEventListener("htmx:afterSwap", function(evt) {
   // On navigation, the script is usually already loaded.
   // We check if 'g-recaptcha' exists. If it does, we render.
   // If it DOESN'T exist, we do nothing—the 'onload' callback from Step 2 will handle it when it arrives.
   if (window.grecaptcha) {
     window.initCaptcha();
+  }
+
+  // Re-run Prism code highlighting on newly swapped content
+  if (window.Prism) {
+    window.Prism.highlightAllUnder(evt.detail && evt.detail.target ? evt.detail.target : document);
   }
 });
 
@@ -103,5 +108,10 @@ function updateActiveNav() {
 
 updateActiveNav();
 document.body.addEventListener("htmx:pushedIntoHistory", updateActiveNav);
-document.body.addEventListener("htmx:historyRestore", updateActiveNav);
+document.body.addEventListener("htmx:historyRestore", function() {
+  updateActiveNav();
+  if (window.Prism) {
+    window.Prism.highlightAllUnder(document);
+  }
+});
 window.addEventListener("popstate", updateActiveNav);
