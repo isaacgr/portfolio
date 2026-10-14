@@ -36,6 +36,47 @@ logs, asking questions about system history, doing some in house testing and
 finally providing a detailed analysis on why this is something we *can* or *cant*
 do, or why its something we *should* or *should not* do.
 
+## The myth of 'job security'
+
+Its common when you're more junior to assume the above 
+is actually a good thing. If you're the one everyone is going to, then that 
+must mean you're getting pretty important. You want to be the source of truth,
+the person with all the insight and know how.
+
+![](./resources/busy.gif)
+
+But over time that starts to take a toll. You find it harder to do any work
+that helps you excel forward and grow. You find yourself spending too much time
+going through the same problems with others, walking through the same issues,
+same debugging steps, same architectural forks in the road. 
+
+Worse yet, you start to resent your coworkers for becoming so dependant on you.
+Maybe a lot of people would be less reliant on your input and replies if they
+had access to the right tools. Maybe they might be able to own the problem, or
+fish themselves for the solution if they had access to the resources and tools
+you use. 
+
+But they dont, and because of that they come to you. And they come to
+you often, and you think them less competent or capable because they're coming
+to you with the same problems requiring the same solutions.
+
+Repeat until you're bitter, sarcastic, rude, short-tempered and burnt out.
+
+Heres a direct quote from a more senior colleague in one of these positions.
+This was in response to a suggestion that they take a lot of their troubleshooting
+and investigation how-to docs and make them available on a small internal
+platform we host for this sort of thing:
+
+> i'll consider tagging some more of my polished private docs
+>
+> not all of them, need a few in the back pocket for job security
+
+Oh dear...
+
+![](./resources/smaug.jpeg)
+
+## Tooling
+
 A good subset of those questions can be answered through changelogs. Anything
 that asks the question of "is this a known issue?", "is this bug seen at this site
 fixed in the version we have?".
