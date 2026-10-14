@@ -14,7 +14,7 @@ build:
 	@bash scripts/update-file-hash.sh $(BUILD_DIR)
 	GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -gcflags "-c=16" -mod=vendor -o $(BUILD_DIR)/$(MODULE_NAME)-$(VERSION) ./cmd/$(MODULE_NAME)
 
-install:
+install: uninstall build
 	mkdir -p $(CONFIG_DIR) $(BLOG_DIR) $(AUTH_DIR)
 	cp $(BUILD_DIR)/$(MODULE_NAME)-$(VERSION) $(INSTALL_DIR)/
 	
