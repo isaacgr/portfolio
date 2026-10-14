@@ -1,0 +1,27 @@
+{{define "articleListing"}}
+<article class="post-card">
+    <time class="post-card__date" datetime="{{.FrontMatter.CreatedAt}}"
+        >{{formatDate .FrontMatter.CreatedAt}}</time
+    >
+    <h3 class="post-card__title">
+        <a
+            href="/blog/{{.Slug}}"
+            hx-get="/blog/{{.Slug}}"
+            hx-push-url="/blog/{{.Slug}}"
+            hx-swap="innerHTML show:window:top transition:true"
+            hx-target="#main"
+            hx-target-4*="#main"
+            hx-target-5*="#main"
+            >{{.FrontMatter.Title}}</a
+        >
+    </h3>
+    <p class="post-card__desc">{{.FrontMatter.Description}}</p>
+    {{if .FrontMatter.TagList}}
+    <ul class="tag-list">
+        {{range .FrontMatter.TagList}}
+        <li class="tag">{{.}}</li>
+        {{end}}
+    </ul>
+    {{end}}
+</article>
+{{end}}

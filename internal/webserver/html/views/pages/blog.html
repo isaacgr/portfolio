@@ -1,0 +1,27 @@
+{{define "blog"}}
+<header class="page-header">
+    <div class="wrapper">
+        <p class="eyebrow">Blog</p>
+        <h1>Writing</h1>
+        <p class="lead">
+            Takes on software and product management, lessons from working in
+            broadcast, and anything else worth sharing.
+        </p>
+        <p class="muted">
+        The views and opinions expressed are my own and do not reflect the
+        official policy, position or opinons of my employer.
+        </p>
+    </div>
+</header>
+<section id="blog" class="wrapper page-body">
+    {{if .Articles}}
+    <ul class="post-list auto-grid">
+        {{range .Articles}}
+        <li>{{template "articleListing" .}}</li>
+        {{end}}
+    </ul>
+    {{else}}
+    <p class="empty-state">No posts yet &mdash; check back soon.</p>
+    {{end}}
+</section>
+{{end}}

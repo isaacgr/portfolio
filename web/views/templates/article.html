@@ -1,9 +1,0 @@
-{{define "article"}}
-<section class="container">
-    <h1>{{.Title}}</h1>
-    {{range .Tags}}
-    <div class="post-tag btn">{{.}}</div>
-    {{end}}
-    <div class="post container">{{.Post}}</div>
-</section>
-{{end}}

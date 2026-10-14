@@ -1,17 +1,18 @@
-package portfolio
+package webserver
 
 import (
 	"bytes"
 	"errors"
 	"fmt"
 	"html/template"
+	"io/fs"
+	"log/slog"
 	"net/http"
 	"os"
 	"path"
 	"strings"
 
-	"github.com/isaacgr/portfolio/internal/api"
-	"github.com/isaacgr/portfolio/internal/server"
+	"github.com/isaacgr/portfolio/internal/blog"
 )
 
 const (
@@ -20,7 +21,77 @@ const (
 	Description = "Portfolio and blog for Isaac Rowell, written with Go+HTMX"
 )
 
-func (s *PortfolioApi) handleIndex(
+type RouteRegistrar interface {
+	Register(mux *http.ServeMux)
+}
+
+type Handler struct {
+	mux       *http.ServeMux
+	responder *responder
+	domains   []RouteRegistrar
+}
+
+type RootHandler struct {
+	responder       Responder
+	log             *slog.Logger
+	uri             string
+	renderer        *Renderer
+	blogFinder      *blog.BlogFinder
+	mailClient      *MailClient
+	recaptchaParams ReCaptchaParams
+}
+
+func (h *Handler) MountAll() {
+	for _, d := range h.domains {
+		d.Register(h.mux)
+	}
+}
+
+func NewHandler(
+	r Responder,
+	logger *slog.Logger,
+	renderer *Renderer,
+	blogFinder *blog.BlogFinder,
+	mailClient *MailClient,
+	recaptchaParams ReCaptchaParams,
+) *RootHandler {
+	return &RootHandler{
+		responder:       r,
+		log:             logger,
+		renderer:        renderer,
+		uri:             "/",
+		blogFinder:      blogFinder,
+		mailClient:      mailClient,
+		recaptchaParams: recaptchaParams,
+	}
+}
+
+func (h *RootHandler) Register(mux *http.ServeMux) {
+	staticFs, err := fs.Sub(Assets, "html/static")
+	if err != nil {
+		h.log.Error("Cannot parse static assets")
+		return
+	}
+
+	mux.HandleFunc("/", h.handleIndex)
+	mux.HandleFunc("/home", h.handleHome)
+	mux.HandleFunc("/experience", h.handleExperience)
+	mux.HandleFunc("/contact", h.handleContact)
+	mux.HandleFunc("/blog", h.handleBlog)
+	mux.HandleFunc("/blog/{slug}", h.handleBlogPost)
+	// I want to support the old blogs that all reference _resources
+	mux.HandleFunc("/blog/{slug}/resources/", h.handleBlogPostResources)
+	mux.HandleFunc("/blog/{slug}/_resources/", h.handleBlogPostResources)
+	mux.Handle(
+		"/static/",
+		http.StripPrefix(
+			"/static/",
+			http.FileServer(http.FS(staticFs)),
+		),
+	)
+}
+
+func (s *RootHandler) handleIndex(
 	w http.ResponseWriter,
 	r *http.Request,
 ) {
@@ -30,7 +101,10 @@ func (s *PortfolioApi) handleIndex(
 	}
 	var buf bytes.Buffer
 	var err error
-	err = s.renderer.Render(&buf, "home", nil)
+	homeData := map[string]any{
+		"Articles": s.blogFinder.Articles,
+	}
+	err = s.renderer.Render(&buf, "home", homeData)
 	data := map[string]any{
 		"Title":       Title,
 		"Sitename":    Sitename,
@@ -43,11 +117,11 @@ func (s *PortfolioApi) handleIndex(
 	}
 }
 
-func (s *PortfolioApi) handleHome(w http.ResponseWriter, r *http.Request) {
+func (s *RootHandler) handleHome(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
-func (s *PortfolioApi) handleExperience(w http.ResponseWriter, r *http.Request) {
+func (s *RootHandler) handleExperience(w http.ResponseWriter, r *http.Request) {
 	h := r.Header.Get("HX-Request")
 	var buf bytes.Buffer
 	var err error
@@ -67,7 +141,7 @@ func (s *PortfolioApi) handleExperience(w http.ResponseWriter, r *http.Request) 
 	}
 }
 
-func (s *PortfolioApi) handleContact(w http.ResponseWriter, r *http.Request) {
+func (s *RootHandler) handleContact(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		h := r.Header.Get("HX-Request")
@@ -93,7 +167,7 @@ func (s *PortfolioApi) handleContact(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *PortfolioApi) handleBlog(w http.ResponseWriter, r *http.Request) {
+func (s *RootHandler) handleBlog(w http.ResponseWriter, r *http.Request) {
 	posts := map[string]any{
 		"Articles": s.blogFinder.Articles,
 	}
@@ -117,11 +191,11 @@ func (s *PortfolioApi) handleBlog(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *PortfolioApi) handleBlogPost(w http.ResponseWriter, r *http.Request) {
+func (s *RootHandler) handleBlogPost(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
 	article, ok := s.blogFinder.ArticlesBySlug[slug]
 	if !ok {
-		e := api.Error{
+		e := Error{
 			Code: http.StatusBadRequest,
 			Msg:  "Post not found",
 		}
@@ -129,9 +203,10 @@ func (s *PortfolioApi) handleBlogPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	post := map[string]any{
-		"Title": article.FrontMatter.Title,
-		"Tags":  article.FrontMatter.TagList,
-		"Post":  template.HTML(article.HTML),
+		"Title":     article.FrontMatter.Title,
+		"Tags":      article.FrontMatter.TagList,
+		"Post":      template.HTML(article.HTML),
+		"CreatedAt": article.FrontMatter.CreatedAt,
 	}
 	var buf bytes.Buffer
 	var err error
@@ -153,7 +228,7 @@ func (s *PortfolioApi) handleBlogPost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *PortfolioApi) handleBlogPostResources(
+func (s *RootHandler) handleBlogPostResources(
 	w http.ResponseWriter,
 	r *http.Request,
 ) {
@@ -209,7 +284,7 @@ func (s *PortfolioApi) handleBlogPostResources(
 	w.Write(buf)
 }
 
-func (s *PortfolioApi) contactSubmit(w http.ResponseWriter, r *http.Request) {
+func (s *RootHandler) contactSubmit(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		s.log.Error("Unable to parse contact form. ", "Error", err.Error())
@@ -228,7 +303,7 @@ func (s *PortfolioApi) contactSubmit(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		captchaToken := r.FormValue("g-recaptcha-response")
-		score, err := server.CreateAssessment(
+		score, err := CreateAssessment(
 			s.recaptchaParams.ProjectID,
 			s.recaptchaParams.Key,
 			captchaToken,
@@ -257,7 +332,7 @@ func (s *PortfolioApi) contactSubmit(w http.ResponseWriter, r *http.Request) {
 			)
 			return
 		}
-		cd := server.NewContact(
+		cd := NewContact(
 			r.FormValue("name"),
 			r.FormValue("email"),
 			r.FormValue("subject"),
@@ -278,4 +353,24 @@ func (s *PortfolioApi) contactSubmit(w http.ResponseWriter, r *http.Request) {
 			s.renderer.Render(w, "success", nil)
 		}
 	}
+}
+
+func (s *RootHandler) respondError(
+	w http.ResponseWriter,
+	r *http.Request,
+	err error,
+	status int,
+	data string,
+) {
+	var errBuf bytes.Buffer
+	s.renderer.Render(&errBuf, "error", Error{
+		Msg:  err.Error(),
+		Code: status,
+		Data: data,
+	})
+	s.responder.HTML(
+		w,
+		http.StatusInternalServerError,
+		errBuf.String(),
+	)
 }

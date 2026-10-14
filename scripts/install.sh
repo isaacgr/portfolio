@@ -24,7 +24,6 @@ set_file_permissions(){
 
     chown -R portfolio:portfolio /var/lib/portfolio
     chmod -R 770 /var/lib/portfolio/posts
-    chmod -R 770 /var/lib/portfolio/web
     chmod 660 /var/lib/portfolio/config.ini
 }
 

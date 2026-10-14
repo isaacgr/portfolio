@@ -1,0 +1,158 @@
+{{define "base"}}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="{{.Description}}" />
+        <title>{{.Title}}</title>
+        <script>
+            // Apply the saved/system theme before first paint to avoid a flash
+            (function () {
+                var theme = "light";
+                try {
+                    theme =
+                        localStorage.getItem("theme") ||
+                        (window.matchMedia("(prefers-color-scheme: dark)")
+                            .matches
+                            ? "dark"
+                            : "light");
+                } catch (e) {}
+                document.documentElement.setAttribute("data-theme", theme);
+            })();
+        </script>
+        <link
+            rel="preload"
+            href="/static/assets/fonts/UbuntuSans/UbuntuSans-VariableFont_wdth,wght.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin
+        />
+        <link rel="stylesheet" href="/static/css/styles.css?v=1791886416000" />
+        <link rel="stylesheet" href="/static/css/prism.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/static/assets/favicon/favicon-96x96.png"
+            sizes="96x96"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/static/assets/favicon/favicon.svg"
+        />
+        <link rel="shortcut icon" href="/static/assets/favicon/favicon.ico" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/static/assets/favicon/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="IsaacRowell" />
+        <meta name="twitter:title" content="{{.Title}}" />
+        <meta name="twitter:description" content="{{.Description}}" />
+        <meta
+            name="twitter:url"
+            content="https://irowell.io/favicon.png"
+        />
+        <meta name="twitter:card" content="summary" />
+        <link rel="manifest" href="/static/assets/favicon/site.webmanifest" />
+        <script src="/static/htmx/htmx.js"></script>
+        <script src="/static/htmx/response-targets.js"></script>
+        <script src="/static/js/prism.js"></script>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="site-header__inner wrapper">
+                <div class="logo">
+                    <a
+                        href="/"
+                        hx-get="/home"
+                        hx-push-url="/"
+                        hx-select="#main"
+                        hx-target="#main"
+                        hx-swap="outerHTML show:window:top transition:true"
+                        >Isaac Rowell</a
+                    >
+                </div>
+                {{block "navbar" .}}{{end}}
+            </div>
+        </header>
+        <main hx-ext="response-targets" id="main">{{.Body}}</main>
+        <footer class="site-footer">
+            <div class="site-footer__inner wrapper">
+                <small>
+                    &copy; <span id="copy-year"></span> Isaac Rowell. All rights
+                    reserved.
+                </small>
+                <ul class="footer-socials">
+                    <li>
+                        <a
+                            href="mailto:isaac@irowell.io?subject=Reaching%20Out"
+                            aria-label="Email"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                aria-hidden="true"
+                            >
+                                <rect x="3" y="5" width="18" height="14" rx="2" />
+                                <path d="M3 7l9 6 9-6" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://github.com/isaacgr"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="GitHub"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 .5C5.73.5.99 5.24.99 11.51c0 4.85 3.15 8.96 7.51 10.41.55.1.75-.24.75-.53 0-.26-.01-1.13-.02-2.06-3.06.67-3.71-1.31-3.71-1.31-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.67 2.57 1.19 3.2.91.1-.71.38-1.19.68-1.47-2.44-.28-5-1.22-5-5.43 0-1.2.43-2.17 1.13-2.94-.11-.28-.49-1.41.11-2.94 0 0 .92-.29 3.02 1.12a10.4 10.4 0 0 1 5.5 0c2.1-1.41 3.02-1.12 3.02-1.12.6 1.53.22 2.66.11 2.94.7.77 1.13 1.74 1.13 2.94 0 4.22-2.57 5.15-5.01 5.43.39.34.73 1.01.73 2.04 0 1.47-.01 2.66-.01 3.02 0 .29.2.64.76.53 4.35-1.45 7.5-5.56 7.5-10.41C23.02 5.24 18.28.5 12 .5z"
+                                />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.linkedin.com/in/isaac-gluchowski-rowell-81882b98/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="LinkedIn"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.2 2.3-2.46 4.73-2.46C22.4 7.74 24 10 24 13.8V24h-5v-8.6c0-2.05-.04-4.7-2.86-4.7-2.86 0-3.3 2.24-3.3 4.56V24H8z"
+                                />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://x.com/isaacgrowell"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="X/Twitter"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z"
+                                />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+    <script src="/static/js/main.js?v=1791889079000"></script>
+    <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=explicit&onload=initCaptcha"
+        async
+        defer
+    ></script>
+</html>
+{{end}}

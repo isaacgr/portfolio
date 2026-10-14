@@ -11,7 +11,6 @@ VERSION:= $(shell scripts/version.sh)
 build:
 	mkdir -p $(BUILD_DIR)
 	cp ./docs/example.config.ini $(BUILD_DIR)/config.ini
-	cp -r ./web $(BUILD_DIR)/
 	@bash scripts/update-file-hash.sh $(BUILD_DIR)
 	GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -gcflags "-c=16" -mod=vendor -o $(BUILD_DIR)/$(MODULE_NAME)-$(VERSION) ./cmd/$(MODULE_NAME)
 
@@ -23,7 +22,6 @@ install:
 	# since it has a lot of annoying parameters to fill in
 	cp -n $(BUILD_DIR)/config.ini $(CONFIG_DIR)/
 
-	cp -r $(BUILD_DIR)/web $(CONFIG_DIR)/
 	cp -r posts $(BLOG_DIR)/
 	ln -sf $(INSTALL_DIR)/$(MODULE_NAME)-$(VERSION) $(INSTALL_DIR)/$(MODULE_NAME)
 

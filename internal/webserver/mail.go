@@ -1,11 +1,10 @@
-package server
+package webserver
 
 import (
 	"fmt"
 	"log/slog"
 	"net/http"
 
-	"github.com/isaacgr/portfolio/internal/api"
 	"github.com/wneessen/go-mail"
 )
 
@@ -39,7 +38,7 @@ func NewMailClient(
 	)
 
 	if err != nil {
-		return nil, api.Error{
+		return nil, Error{
 			Msg:  "Unable to send message",
 			Code: http.StatusInternalServerError,
 		}
@@ -83,7 +82,7 @@ func (c *MailClient) SendEmail(
 
 	if err := c.client.DialAndSend(m); err != nil {
 		c.log.Error("Failed to send contact email.", "Error", err)
-		return api.Error{
+		return Error{
 			Msg:  "Unable to send message",
 			Code: http.StatusInternalServerError,
 		}

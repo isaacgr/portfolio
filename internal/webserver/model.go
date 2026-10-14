@@ -1,4 +1,11 @@
-package api
+package webserver
+
+import "io/fs"
+
+type File struct {
+	path  string
+	entry fs.DirEntry
+}
 
 type Error struct {
 	Msg  string
