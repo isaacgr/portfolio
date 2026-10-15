@@ -75,9 +75,44 @@ Oh dear...
 
 ![](./resources/smaug.jpeg)
 
-## Tooling
+Thats a great way to stay where you are I suppose. Openly making yourself
+the gatekeeper of how to execute a particular process, or the only one with the
+know-how on how to troubleshoot or investigate an issue. 
 
-A good subset of those questions can be answered through changelogs. Anything
+And it doesnt matter at the end of the day. The company doesnt actually consider
+these sort of things if they want to let you go. And if you quit, a good
+manager should be able to cover your position adequately. And it usually only takes
+a few months or so for someone to get up to speed enough. 
+
+I recall when my
+mentor quit. He was actually very good at this sort of documentation and knowledge
+sharing, but he did *so much*
+that at the time I recall my boss was quite stressed about the whole thing, unsure
+of what to actually do about it (there was a brief period where he would have to
+take on the bulk of the work). But
+within a couple of months the workload started to move off. Sure, they had to 
+offload it to about 3 people but that soon became the norm, and they trained
+more people to offload that work and now that position he filled is effectively
+just 3 or more different jobs delegated to multiple different teams.
+
+So if he had eagerly hoarded knowledge for 'job security' what good
+would that have done? It would have just been making things harder for himself
+and others while he was with us, and it would have gotten disseminated (or forgotten)
+after he left anyway.
+
+## Burn-out
+
+Its pretty obvious that having the mentaility of knowledge hoarding for some
+perceived employment related gain will eventually lead to or accelerate your
+burn-out.
+
+
+
+## Ways to share the knowledge
+
+### Tooling
+
+A good subset of the questions I deal with can be answered through changelogs. Anything
 that asks the question of "is this a known issue?", "is this bug seen at this site
 fixed in the version we have?".
 
@@ -87,4 +122,19 @@ a changelog would typically either be for the individual service or for a group
 of services that account for a change. I have a tool that I've built up over
 many years that scrapes jira, git, confluence and testrail and provides the user
 with the list of bugfixes and features between versions.
+
+This tool has been made public within the organization, so anyone with an AD
+account can access it. This is the exact tool that I use myself to answer
+a lot of these questions, or at least provide a basis for further investigation,
+and I've tried to train others to use it as well. Its saved me and others loads
+of time since they are no longer waiting on me for an answer and I'm no longer
+required to distract myself to answer it for them. Now there is a bit of verification
+required, and I do still want people to check with me to make sure things are
+correct, but its much better doing it from a point of 'Hey Im seeing this issue onsite, 
+it sort of looks like this which is already fixed in this version. Do
+you agree?'
+
+### Documentation
+
+### Lunch and Learns
 

@@ -3,7 +3,6 @@
 Reset
 ========================================
 */
-/* A small modern reset, replacing the 2011 Meyer reset */
 
 *,
 *::before,
@@ -83,7 +82,6 @@ Fonts
 ===============================
 */
 
-/*Ubuntu Sans*/
 @font-face {
     font-family: "Ubuntu Sans";
     src: url("../assets/fonts/UbuntuSans/UbuntuSans-VariableFont_wdth,wght.ttf")
