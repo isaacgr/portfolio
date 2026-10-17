@@ -28,7 +28,7 @@ is experiencing onsite, and if it is or is not a bug with the product
 
 # The myth of 'job security'
 
-It's common when you're more junior to assume the above 
+It's common when you're starting out to assume the above 
 is actually a good thing. If you're the one everyone is going to, then that 
 must mean you're getting pretty important. You want to be the source of truth,
 the person with all the insight and know how.
@@ -71,7 +71,7 @@ burn-out.
 And it doesn't matter at the end of the day. The company doesn't actually consider
 these sort of things if they want to let you go. And if you quit, a good
 manager should be able to cover your position adequately. And it usually only takes
-a few months or so for someone to get up to speed enough. 
+a few months or so for someone to get up o speed enough. 
 
 ---
 
@@ -120,15 +120,15 @@ accommodate these. But preparing a 1-2 hour presentation on a topic that people
 generally reach out about is definitely more engaging. Discussing Q&A in person
 is always easier, and the group setting allows others to hear answers to
 questions they might not have thought about in the moment. It can also be a good
-way fo you to introduce people to existing documentation if they haven't accessed
+way for you to introduce people to existing documentation if they haven't accessed
 it before.
 
 Also, free lunch...
 
 ## Tooling
 
-A good subset of the questions I deal with can be answered through changelogs. Anything
-that asks the question of "is this a known issue?", "is this bug seen at this site
+A subset of the questions I deal with can be answered through changelogs. Anything
+that asks the question "is this a known issue?", "is this bug seen at this site
 fixed in the version we have?".
 
 Our product is [microservice](https://en.wikipedia.org/wiki/Microservices) based as opposed 
@@ -143,7 +143,9 @@ account can access it. This is the exact tool that I use myself to answer
 a lot of these questions, or at least provide a basis for further investigation,
 and I've tried to train others to use it as well. It's saved me and others loads
 of time since they are no longer waiting on me for an answer and I'm no longer
-required to distract myself to answer it for them. Now there is a bit of verification
+required to distract myself to answer it for them. 
+
+Now there is a bit of verification
 required, and I do still want people to check with me to make sure things are
 correct, but it's much better doing it from a point of 'Hey I'm seeing this issue onsite, 
 it sort of looks like this which is already fixed in this version. Do
@@ -162,8 +164,8 @@ off of your plate so you can focus on the more important elements of your work.
 
 I would add here that the output should *always* be verified. We have had cases
 of teams taking the AI output and communicating it directly with the customer,
-which has resulted in a few paniced and misinformed escalations (*something about
-the postgres database!?*)
+which has resulted in a few paniced and misinformed escalations (*something's
+wrong with the postgres database!?*...)
 
 # Don't worry about getting credit
 
@@ -172,6 +174,6 @@ that I've built up. But their effects will be felt, through the autonomy and
 action of the people who need the knowledge to do their job. They can be more effective
 and will eventually outgrow the need for guides through osmosis. They might even
 learn enough to contribute themselves, continuing the cycle for the next group.
-That frees up my time, and it ultimately frees up their time as well. Plus there's
-a certain satisfaction in knowing you actually *helped teach* someone as opposed
+That frees up your time, and it ultimately frees up their time as well. Plus there's
+a certain satisfaction in knowing you actually *helped to teach* someone as opposed
 to just telling them what to do.
