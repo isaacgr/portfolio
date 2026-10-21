@@ -8,6 +8,7 @@ import (
 	"io/fs"
 	"log/slog"
 	"net/http"
+	"net/url"
 	"os"
 	"path"
 	"strings"
@@ -193,6 +194,7 @@ func (s *RootHandler) handleBlog(w http.ResponseWriter, r *http.Request) {
 
 func (s *RootHandler) handleBlogPost(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
+	slug = url.PathEscape(slug)
 	article, ok := s.blogFinder.ArticlesBySlug[slug]
 	if !ok {
 		e := Error{
@@ -204,8 +206,10 @@ func (s *RootHandler) handleBlogPost(w http.ResponseWriter, r *http.Request) {
 	}
 	post := map[string]any{
 		"Title":     article.FrontMatter.Title,
+		"Description":     article.FrontMatter.Description,
 		"Tags":      article.FrontMatter.TagList,
 		"Post":      template.HTML(article.HTML),
+		"Archived":  article.Archived,
 		"CreatedAt": article.FrontMatter.CreatedAt,
 	}
 	var buf bytes.Buffer
@@ -233,6 +237,7 @@ func (s *RootHandler) handleBlogPostResources(
 	r *http.Request,
 ) {
 	slug := r.PathValue("slug")
+	slug = url.PathEscape(slug)
 	article, ok := s.blogFinder.ArticlesBySlug[slug]
 	if !ok {
 		s.respondError(

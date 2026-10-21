@@ -1,6 +1,8 @@
 {{define "articleListing"}}
 <article class="post-card">
-    <time class="post-card__date" datetime="{{.FrontMatter.CreatedAt}}"
+    <time
+        class="post-card__date {{if .Archived}}post-card__archived{{end}}"
+        datetime="{{.FrontMatter.CreatedAt}}"
         >{{formatDate .FrontMatter.CreatedAt}}</time
     >
     <h3 class="post-card__title">
@@ -17,9 +19,9 @@
     </h3>
     <p class="post-card__desc">{{.FrontMatter.Description}}</p>
     {{if .FrontMatter.TagList}}
-    <ul class="tag-list">
+    <ul class="post-tag-list">
         {{range .FrontMatter.TagList}}
-        <li class="tag">{{.}}</li>
+        <li class="post-tag post-tag__{{.}}">{{.}}</li>
         {{end}}
     </ul>
     {{end}}
