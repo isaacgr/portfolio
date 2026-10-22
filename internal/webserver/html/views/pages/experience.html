@@ -20,17 +20,21 @@
 <section id="broadcast" class="section">
     <div class="wrapper auto-grid">
         <article class="card feature-card">
-            <div class="feature-card__icon">{{block "workflow-img" .}}{{end}}</div>
+            <div class="feature-card__icon">
+                {{block "workflow-img" .}}{{end}}
+            </div>
             <h3>Workflow Knowledge</h3>
             <p>
                 Deep understanding of live production, master control,
-                post‑production, remote/IP production, and esports
-                broadcasting. Architected control solutions that support
-                multi‑role operations in complex environments.
+                post‑production, remote/IP production, and esports broadcasting.
+                Architected control solutions that support multi‑role operations
+                in complex environments.
             </p>
         </article>
         <article class="card feature-card">
-            <div class="feature-card__icon">{{block "standards-img" .}}{{end}}</div>
+            <div class="feature-card__icon">
+                {{block "standards-img" .}}{{end}}
+            </div>
             <h3>Standards &amp; Networking</h3>
             <p>
                 SMPTE 2110, SDI, NMOS, and compressed IP formats. Experience
@@ -41,7 +45,9 @@
             </p>
         </article>
         <article class="card feature-card">
-            <div class="feature-card__icon">{{block "global-search-img" .}}{{end}}</div>
+            <div class="feature-card__icon">
+                {{block "global-search-img" .}}{{end}}
+            </div>
             <h3>Global Operational Insight</h3>
             <p>
                 Experience engaging with broadcasters across North America,
@@ -54,29 +60,50 @@
 </section>
 <section id="experience" class="section section--tinted">
     <div class="wrapper">
-        <div class="split">
-            <h2>Work Experience</h2>
+        <header class="section-header">
+            <div>
+                <p class="eyebrow">Career</p>
+            </div>
+        </header>
+        <article class="card work-card">
+            <header class="work-card__header">
+                <div class="work-card__company">
+                    <img
+                        class="work-card__logo"
+                        src="/static/assets/images/work/evertz-logo.svg"
+                        alt="Evertz Microsystems logo"
+                        width="1510"
+                        height="420"
+                        loading="lazy"
+                    />
+                    <div>
+                        <h3 class="work-card__org">Evertz Microsystems Ltd.</h3>
+                        <p class="work-card__meta"> Broadcast &amp; Media Technology &middot; Burlington, ON</p>
+                    </div>
+                </div>
+                <span class="timeline__date">2016 – Present &middot; 10 yrs</span>
+            </header>
             <ol class="timeline">
                 <li class="timeline__item">
-                    <span class="timeline__date">April 2020 – Present</span>
-                    <h3 class="timeline__title">
-                        Senior Product Specialist, Control Systems
-                    </h3>
-                    <p class="timeline__org">Evertz Microsystems Ltd.</p>
+                    <div class="timeline__role-header">
+                        <h4 class="timeline__title">
+                            Senior Product Specialist, Control Systems
+                        </h4>
+                        <span class="timeline__date">April 2020 – Present</span>
+                    </div>
                     <ul class="bullets">
                         <li>
                             Led UI and backend teams to design and deliver the
                             MAGNUM product on a regular release cadence.
                         </li>
                         <li>
-                            Managed a product specialist team for validation
-                            and support; drove QA, regression, and
-                            documentation.
+                            Managed a product specialist team for validation and
+                            support; drove QA, regression, and documentation.
                         </li>
                         <li>
-                            Implemented Agile tracking (Jira), balancing
-                            monthly iterations for small features with
-                            multi‑month large releases.
+                            Implemented Agile tracking (Jira), balancing monthly
+                            iterations for small features with multi‑month large
+                            releases.
                         </li>
                         <li>
                             Coordinated cross‑product integrations with Product
@@ -90,11 +117,12 @@
                     </ul>
                 </li>
                 <li class="timeline__item">
-                    <span class="timeline__date">June 2016 – April 2020</span>
-                    <h3 class="timeline__title">
-                        Product Specialist, Control Systems
-                    </h3>
-                    <p class="timeline__org">Evertz Microsystems Ltd.</p>
+                    <div class="timeline__role-header">
+                        <h4 class="timeline__title">
+                            Product Specialist, Control Systems
+                        </h4>
+                        <span class="timeline__date timeline__date--muted">June 2016 – April 2020</span>
+                    </div>
                     <ul class="bullets">
                         <li>
                             Validated control system software functionality and
@@ -113,74 +141,160 @@
                     </ul>
                 </li>
             </ol>
-        </div>
+        </article>
     </div>
 </section>
 <section id="skills" class="section">
     <div class="wrapper">
-        <div class="split">
-            <h2>Skills</h2>
-            <div class="auto-grid auto-grid--narrow">
-                <div>
-                    <h3>Focus Areas</h3>
-                    <ul class="chip-list">
-                        <li class="chip">Systems performance &amp; capacity management</li>
-                        <li class="chip">QA, regression, and release management</li>
-                        <li class="chip">Cloud &amp; on‑prem orchestration</li>
-                        <li class="chip">Developer productivity tooling</li>
-                        <li class="chip">Automation &amp; Integration Testing</li>
-                        <li class="chip">Networking Design</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Software &amp; Systems</h3>
-                    <ul class="chip-list">
-                        <li class="chip">Python</li>
-                        <li class="chip">Golang</li>
-                        <li class="chip">JavaScript</li>
-                        <li class="chip">Linux (Ubuntu, CentOS)</li>
-                        <li class="chip">Scalable Architectures</li>
-                        <li class="chip">Cloud Services (AWS, Azure, Oracle)</li>
-                        <li class="chip">Atlassian Cloud (Bitbucket, Jira)</li>
-                        <li class="chip">Agentic systems/AI workflows</li>
-                    </ul>
-                </div>
+        <header class="section-header">
+            <div>
+                <p class="eyebrow">Capabilities &amp; Tooling</p>
             </div>
+        </header>
+        <div class="skills-grid">
+            <article class="card skill-card skill-card--focus">
+                <header class="skill-card__header">
+                    <div class="feature-card__icon">
+                        {{template "icon-target"}}
+                    </div>
+                    <div>
+                        <h3>Focus Areas</h3>
+                        <p class="skill-card__sub">Core engineering &amp; operational disciplines</p>
+                    </div>
+                </header>
+                <ul class="focus-list">
+                    <li class="focus-item">
+                        <span class="focus-item__icon">{{template "icon-gauge"}}</span>
+                        <span>Systems performance &amp; capacity management</span>
+                    </li>
+                    <li class="focus-item">
+                        <span class="focus-item__icon">{{template "icon-shield-check"}}</span>
+                        <span>QA, regression, and release management</span>
+                    </li>
+                    <li class="focus-item">
+                        <span class="focus-item__icon">{{template "icon-layers"}}</span>
+                        <span>Cloud &amp; on‑prem system orchestration</span>
+                    </li>
+                    <li class="focus-item">
+                        <span class="focus-item__icon">{{template "icon-wrench"}}</span>
+                        <span>Developer productivity tooling</span>
+                    </li>
+                    <li class="focus-item">
+                        <span class="focus-item__icon">{{template "icon-flask"}}</span>
+                        <span>Automation &amp; Integration Testing</span>
+                    </li>
+                    <li class="focus-item">
+                        <span class="focus-item__icon">{{template "icon-network"}}</span>
+                        <span>Networking Design</span>
+                    </li>
+                </ul>
+            </article>
+            <article class="card skill-card skill-card--tech">
+                <header class="skill-card__header">
+                    <div class="feature-card__icon">
+                        {{template "icon-terminal"}}
+                    </div>
+                    <div>
+                        <h3>Software &amp; Systems</h3>
+                        <p class="skill-card__sub">Languages, platforms, and infrastructure</p>
+                    </div>
+                </header>
+                <div class="skill-groups">
+                    <div class="skill-group">
+                        <h4 class="skill-group__label">Languages &amp; OS</h4>
+                        <ul class="chip-list">
+                            <li class="chip chip--python">
+                                {{template "icon-python"}}Python
+                            </li>
+                            <li class="chip chip--go">
+                                {{template "icon-go"}}Golang
+                            </li>
+                            <li class="chip chip--js">
+                                {{template "icon-javascript"}}JavaScript
+                            </li>
+                            <li class="chip chip--linux">
+                                {{template "icon-linux"}}Linux (Ubuntu, CentOS)
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4 class="skill-group__label">Platforms &amp; Architecture</h4>
+                        <ul class="chip-list">
+                            <li class="chip chip--arch">
+                                {{template "icon-blocks"}}Scalable Architectures
+                            </li>
+                            <li class="chip chip--ai">
+                                {{template "icon-sparkles"}}Agentic systems/AI
+                                workflows
+                            </li>
+                            <li class="chip chip--cloud">
+                                {{template "icon-cloud"}}Cloud Services (AWS, Azure,
+                                Oracle)
+                            </li>
+                            <li class="chip chip--atlassian">
+                                {{template "icon-atlassian"}}Atlassian Cloud
+                                (Bitbucket, Jira)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
 </section>
-<section id="education" class="section section--flush-top">
+<section id="education" class="section section--tinted">
     <div class="wrapper">
-        <div class="split">
-            <h2>Education</h2>
-            <div class="auto-grid auto-grid--narrow">
-                <article class="card">
-                    <h3>Lakehead University</h3>
-                    <p class="edu-card__years">2014 – 2016</p>
-                    <p class="edu-card__degree">B.Eng. (Electrical)</p>
-                </article>
-                <article class="card">
-                    <h3>Mohawk College</h3>
-                    <p class="edu-card__years">2010 – 2014</p>
-                    <p class="edu-card__degree">
-                        Electrical Engineering Technology - Control
-                    </p>
-                </article>
+        <header class="section-header">
+            <div>
+                <p class="eyebrow">Academic Background</p>
             </div>
+        </header>
+        <div class="edu-grid">
+            <article class="card edu-card edu-card--lakehead">
+                <div class="edu-card__header">
+                    <div class="edu-card__logo">
+                        <img
+                            src="/static/assets/images/education/lakehead-university.svg"
+                            alt="Lakehead University logo"
+                            width="519"
+                            height="132"
+                            loading="lazy"
+                        />
+                    </div>
+                    <span class="timeline__date">2014 – 2016</span>
+                </div>
+                <div class="edu-card__body">
+                    <p class="edu-card__degree">
+                        Bachelor of Engineering (Electrical)
+                    </p>
+                    <p class="edu-card__school">
+                        Lakehead University &middot; Thunder Bay, ON
+                    </p>
+                </div>
+            </article>
+            <article class="card edu-card edu-card--mohawk">
+                <div class="edu-card__header">
+                    <div class="edu-card__logo">
+                        <img
+                            src="/static/assets/images/education/mohawk-college.png"
+                            alt="Mohawk College logo"
+                            width="1024"
+                            height="220"
+                            loading="lazy"
+                        />
+                    </div>
+                    <span class="timeline__date">2010 – 2014</span>
+                </div>
+                <div class="edu-card__body">
+                    <p class="edu-card__degree">
+                        Electrical Engineering Technology – Control
+                    </p>
+                    <p class="edu-card__school">
+                        Mohawk College &middot; Hamilton, ON
+                    </p>
+                </div>
+            </article>
         </div>
     </div>
 </section>
-<!--
-<section id="personal" class="portfolio-section container">
-    <h2>Activities & Interests</h2>
-    <p>Home‑lab tinkerer and side‑project enthusiast.</p>
-    <p>
-        I probably enjoy far too many hobbies. Dabbling in 3D printing and
-        modelling. Always tinkering with some small electronics, and recently
-        trying to setup a more comprehensive smart home setup with ESPs,
-        Arduinos and the like. Have been getting into woodworking ever since I
-        got a garage.
-    </p>
-</section>
--->
 {{end}}

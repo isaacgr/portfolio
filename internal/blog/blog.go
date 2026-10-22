@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io/fs"
 	"log/slog"
+	"net/url"
 	"os"
 	"path/filepath"
 	"slices"
@@ -47,15 +48,15 @@ type Article struct {
 	Slug        string
 	Filepath    string
 	Filename    string
+	Archived    bool
 }
 
 type FrontMatter struct {
 	Title       string   `yaml:"title"`
 	Description string   `yaml:"description"`
-	TagList     []string // Same as TagString but converted to a list
+	TagList     []string `yaml:"tags"`
 	CreatedAt   string   `yaml:"created_at"`
 	UpdatedAt   string   `yaml:"updated_at"`
-	TagString   string   `yaml:"tags"` // Comma separated list of tags, improper yaml format
 	Skip        bool     `yaml:"skip"`
 }
 
@@ -162,8 +163,9 @@ func (n *BlogFinder) parseNotes(file File) {
 		)
 		return
 	}
-	fm.TagList = strings.Split(fm.TagString, ",")
-	slug := strings.ReplaceAll(fm.Title, " ", "_")
+	archived := slices.Contains(fm.TagList, "archive")
+	slug := fm.Title
+	slug = url.PathEscape(slug)
 
 	filenameIdx := strings.LastIndex(file.path, "/")
 	filename := file.path[filenameIdx+1:]
@@ -177,6 +179,7 @@ func (n *BlogFinder) parseNotes(file File) {
 		Slug:        slug,
 		Filepath:    file.path,
 		Filename:    filename,
+		Archived:    archived,
 	}
 	n.log.Info(
 		"Successfully parsed note",

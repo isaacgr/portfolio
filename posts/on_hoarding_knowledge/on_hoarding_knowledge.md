@@ -4,7 +4,11 @@ description: |
     Why proprietary knowledge and deep understandings should be well documented
     and shared with all teams
 created_at: 2026-10-13
-tags: software, product, documentation, rtfm
+tags:
+  - software
+  - product
+  - documentation
+  - rtfm
 ---
 
 > It is amazing what you can accomplish if you do not care who gets the credit.
@@ -71,7 +75,7 @@ burn-out.
 And it doesn't matter at the end of the day. The company doesn't actually consider
 these sort of things if they want to let you go. And if you quit, a good
 manager should be able to cover your position adequately. And it usually only takes
-a few months or so for someone to get up o speed enough. 
+a few months or so for someone to get up to speed enough. 
 
 ---
 

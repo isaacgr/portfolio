@@ -19,6 +19,23 @@ window.initCaptcha = function() {
 document.getElementById("copy-year").textContent =
   new Date().getFullYear();
 
+function renderMath(root) {
+  if (typeof window.renderMathInElement === "function") {
+    window.renderMathInElement(root || document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "\\[", right: "\\]", display: true },
+        { left: "\\(", right: "\\)", display: false },
+      ],
+      throwOnError: false,
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  renderMath(document.body);
+});
+
 document.body.addEventListener("htmx:afterSwap", function(evt) {
   // On navigation, the script is usually already loaded.
   // We check if 'g-recaptcha' exists. If it does, we render.
@@ -27,10 +44,15 @@ document.body.addEventListener("htmx:afterSwap", function(evt) {
     window.initCaptcha();
   }
 
+  const target = evt.detail && evt.detail.target ? evt.detail.target : document.body;
+
   // Re-run Prism code highlighting on newly swapped content
   if (window.Prism) {
-    window.Prism.highlightAllUnder(evt.detail && evt.detail.target ? evt.detail.target : document);
+    window.Prism.highlightAllUnder(target);
   }
+
+  // Re-run KaTeX math rendering on newly swapped content
+  renderMath(target);
 });
 
 function getPreferredTheme() {
@@ -113,5 +135,6 @@ document.body.addEventListener("htmx:historyRestore", function() {
   if (window.Prism) {
     window.Prism.highlightAllUnder(document);
   }
+  renderMath(document.body);
 });
 window.addEventListener("popstate", updateActiveNav);

@@ -29,14 +29,23 @@
         </p>
         {{end}}
         <h1 class="article__title">{{.Title}}</h1>
+        <p class="article__subtitle">{{.Description}}</p>
         {{if .Tags}}
-        <ul class="tag-list">
+        <ul class="post-tag-list">
             {{range .Tags}}
-            <li class="tag">{{.}}</li>
+            <li class="post-tag post-tag__{{.}}">{{.}}</li>
             {{end}}
         </ul>
         {{end}}
     </header>
+    {{if .Archived}}
+    <blockquote class="article__archived">
+        This post is archived, which means I wrote it on my older blog when I
+        was just starting my career. This was a fun time for me, and a lot of those
+        posts are pretty noobish, but I want to leave some of the more polished
+        ones up as a reminder to myself to keep that spark.
+    </blockquote>
+    {{end}}
     <div class="post">{{.Post}}</div>
 </article>
 {{end}}
