@@ -93,10 +93,6 @@ func (h *RootHandler) Register(mux *http.ServeMux) {
 	// I want to support the old blogs that all reference _resources
 	mux.HandleFunc("/blog/{slug}/resources/", h.handleBlogPostResources)
 	mux.HandleFunc("/blog/{slug}/_resources/", h.handleBlogPostResources)
-	mux.HandleFunc(
-		"/lifegrid/",
-		h.handleLifeGrid,
-	)
 	mux.Handle(
 		"/html/lifegrid/",
 		http.FileServer(http.FS(lifeGridAssets)),

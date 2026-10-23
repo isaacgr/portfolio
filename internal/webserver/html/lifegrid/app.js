@@ -217,9 +217,7 @@ function renderAgeStats() {
   const age = new LifeDate().datesArray().length;
   document.getElementById('age').innerHTML = `Age: ${Math.floor(
     age / 7 / 52
-  )} Years`;
-  document.getElementById('time-lived').innerHTML = `
-  Time Alive: ~${Math.floor(
+  )} Years / ${Math.floor(
     age / 7
   )} Weeks / ${age} Days`;
   document.getElementById('time-left').innerHTML = `
