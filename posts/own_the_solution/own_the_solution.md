@@ -6,7 +6,6 @@ tags:
   - software
   - management
   - onboarding
-skip: true
 ---
 
 My role as product specialist at work involves working together with both our
