@@ -25,22 +25,15 @@ import (
 
 type Flags struct {
 	ConfigFile string
-	ConfigDir  string
 	debug      bool
 }
 
 func parseFlags() Flags {
 
-	var configDir = flag.String(
-		"config-dir",
-		"/var/lib/portfolio/",
-		"Directory for config files",
-	)
-
 	var configFile = flag.String(
-		"config",
-		"config.ini",
-		"Conifg file containing site initialization info",
+		"config-file",
+		"/var/lib/portfolio/config.ini",
+		"Config file location containing site initialization info",
 	)
 
 	var debug = flag.Bool(
@@ -53,7 +46,6 @@ func parseFlags() Flags {
 
 	return Flags{
 		ConfigFile: *configFile,
-		ConfigDir:  *configDir,
 		debug:      *debug,
 	}
 }
@@ -70,7 +62,7 @@ func main() {
 	serverLog := log.With("module", "server")
 
 	c, err := config.NewConfigProvider(
-		flags.ConfigDir+flags.ConfigFile,
+		flags.ConfigFile,
 		configLog,
 	)
 	if err != nil {
