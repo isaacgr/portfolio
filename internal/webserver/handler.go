@@ -2,6 +2,7 @@ package webserver
 
 import (
 	"bytes"
+	"embed"
 	"errors"
 	"fmt"
 	"html/template"
@@ -15,6 +16,15 @@ import (
 
 	"github.com/isaacgr/portfolio/internal/blog"
 )
+
+//go:embed html/static
+var Assets embed.FS
+
+//go:embed html/views
+var HTML embed.FS
+
+//go:embed html/lifegrid
+var lifeGridAssets embed.FS
 
 const (
 	Title       = "Integrated Concepts"
@@ -83,6 +93,14 @@ func (h *RootHandler) Register(mux *http.ServeMux) {
 	// I want to support the old blogs that all reference _resources
 	mux.HandleFunc("/blog/{slug}/resources/", h.handleBlogPostResources)
 	mux.HandleFunc("/blog/{slug}/_resources/", h.handleBlogPostResources)
+	mux.HandleFunc(
+		"/lifegrid/",
+		h.handleLifeGrid,
+	)
+	mux.Handle(
+		"/html/lifegrid/",
+		http.FileServer(http.FS(lifeGridAssets)),
+	)
 	mux.Handle(
 		"/static/",
 		http.StripPrefix(
@@ -205,12 +223,12 @@ func (s *RootHandler) handleBlogPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	post := map[string]any{
-		"Title":     article.FrontMatter.Title,
-		"Description":     article.FrontMatter.Description,
-		"Tags":      article.FrontMatter.TagList,
-		"Post":      template.HTML(article.HTML),
-		"Archived":  article.Archived,
-		"CreatedAt": article.FrontMatter.CreatedAt,
+		"Title":       article.FrontMatter.Title,
+		"Description": article.FrontMatter.Description,
+		"Tags":        article.FrontMatter.TagList,
+		"Post":        template.HTML(article.HTML),
+		"Archived":    article.Archived,
+		"CreatedAt":   article.FrontMatter.CreatedAt,
 	}
 	var buf bytes.Buffer
 	var err error
@@ -289,6 +307,26 @@ func (s *RootHandler) handleBlogPostResources(
 	}
 
 	w.Write(buf)
+}
+
+func (s *RootHandler) handleLifeGrid(w http.ResponseWriter, r *http.Request) {
+	h := r.Header.Get("HX-Request")
+	var buf bytes.Buffer
+	var err error
+	if h != "" {
+		err = s.renderer.Render(w, "lifegrid", nil)
+	} else {
+		err = s.renderer.Render(&buf, "lifegrid", nil)
+		data := map[string]any{
+			"Title":    "Integrated Concepts",
+			"Sitename": "Integrated Concepts",
+			"Body":     template.HTML(buf.String()),
+		}
+		err = s.renderer.Render(w, "base", data)
+	}
+	if err != nil {
+		s.respondError(w, r, err, http.StatusInternalServerError, "")
+	}
 }
 
 func (s *RootHandler) contactSubmit(w http.ResponseWriter, r *http.Request) {

@@ -1,0 +1,348 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*
+ ===============================
+ Custom Syles
+ ===============================
+ */
+
+html,
+body {
+	background: #ecf0f1;
+	margin: 0;
+	height: 100%;
+}
+
+.container {
+	width: 90%;
+	height: auto;
+	margin: 1rem auto;
+	padding-bottom: 1rem;
+}
+
+a {
+	text-decoration: none;
+	width: 50%;
+}
+
+a:focus {
+	text-decoration: none;
+	width: 50%;
+}
+
+.content-block {
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.content-block--flex {
+	display: flex;
+	justify-content: center;
+}
+
+.content-block--flex > * {
+	margin: 0 1rem;
+}
+
+/*
+===============================
+Title
+===============================
+*/
+
+.title {
+	color: #95a5a6;
+	text-align: center;
+	font: 300 40px 'Lato', 'Open Sans', 'Helvetica Nue', sans-serif;
+	letter-spacing: 1px;
+	text-transform: capitalize;
+	height: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.sub-title {
+	color: #95a5a6;
+	text-align: center;
+	font: 300 15px 'Lato', 'Open Sans', 'Helvetica Nue', sans-serif;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	margin: 5px auto 15px auto;
+}
+
+/*
+===============================
+Grid
+===============================
+*/
+
+#life-grid,
+#life-grid tr,
+#life-grid td {
+	border: 2px solid #000000;
+}
+
+#life-grid {
+	text-align: left;
+	margin: 0 auto;
+	color: #3498db;
+	font: 300 15px 'Lato', 'Open Sans', 'Helvetica Nue', sans-serif;
+	letter-spacing: 2px;
+	margin: 5px auto 15px auto;
+}
+
+#life-grid td {
+	padding: 0.3rem 0.3rem;
+}
+
+@media screen and (max-width: 774px) {
+	.container {
+		width: 100%;
+	}
+	#life-grid td {
+		padding: 0.25rem 0.25rem;
+	}
+	#life-grid,
+	#life-grid tr,
+	#life-grid td {
+		border: 1px solid #000000;
+	}
+}
+
+@media screen and (max-width: 511px) {
+	.container {
+		width: 100%;
+	}
+	#life-grid td {
+		padding: 0.18rem 0.18rem;
+	}
+}
+
+@media screen and (max-width: 455px) {
+	.container {
+		width: 100%;
+	}
+	#life-grid td {
+		padding: 0.15rem 0.15rem;
+	}
+}
+
+.fill {
+	background-color: #95a5a6;
+}
+.fill-black {
+	background-color: #000000;
+}
+
+.fill-blue {
+	background-color: #2980b9;
+}
+
+.fill-green {
+	background-color: #27ae60;
+}
+
+.fill-yellow {
+	background-color: #f1c40f;
+}
+
+.fill-red {
+	background-color: #c0392b;
+}
+
+.fill-white {
+	background-color: #ecf0f1;
+}
+
+.fill-orange {
+	background-color: #d35400;
+}
+
+.fill-pink {
+	background-color: #ffc0cb;
+}
+
+.fill-purple {
+	background-color: #8e44ad;
+}
+
+.fill-light-blue {
+	background-color: #74b9ff;
+}
+
+.fill-light-purple {
+	background-color: #a29bfe;
+}
+
+/*
+===============================
+Error
+===============================
+*/
+
+#error {
+	color: #c0392b;
+}
+
+/*
+===============================
+Table
+===============================
+*/
+
+td.sub-title {
+	padding-right: 1rem;
+}
+
+/*
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+*/
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}

@@ -1,7 +1,6 @@
 package webserver
 
 import (
-	"embed"
 	"fmt"
 	"html/template"
 	"io"
@@ -11,12 +10,6 @@ import (
 	"slices"
 	"time"
 )
-
-//go:embed html/static
-var Assets embed.FS
-
-//go:embed html/views
-var HTML embed.FS
 
 type Renderer struct {
 	log           *slog.Logger

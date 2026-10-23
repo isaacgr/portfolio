@@ -54,6 +54,19 @@
                 >Contact</a
             >
         </li>
+        <li>
+            <a
+                class="nav-link"
+                href="/lifegrid"
+                data-nav="lifegrid"
+                hx-get="/lifegrid"
+                hx-push-url="/lifegrid"
+                hx-swap="innerHTML show:window:top transition:true"
+                hx-target="#main"
+                hx-target-5*="#main"
+                >My Life Grid</a
+            >
+        </li>
     </ul>
     {{block "theme" .}}{{end}}
 </nav>
