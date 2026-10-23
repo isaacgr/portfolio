@@ -263,6 +263,8 @@ func (s *RootHandler) handleBlogPostResources(
 
 	if err != nil {
 		s.log.Error("Unable to serve resources", "Error", err)
+		http.NotFound(w, r)
+		return
 	}
 
 	ext := path.Ext(r.URL.Path)
