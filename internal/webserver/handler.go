@@ -320,7 +320,7 @@ func (s *RootHandler) contactSubmit(w http.ResponseWriter, r *http.Request) {
 			s.respondError(
 				w,
 				r,
-				err,
+				errors.New("Unable to verify reCAPTCHA"),
 				http.StatusBadRequest,
 				"",
 			)
